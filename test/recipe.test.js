@@ -1,12 +1,12 @@
-const Recipe = require('../lib/recipe');
+const Recipe = require('../model/Recipe');
 
 
 // this file is made to test the recipe class
 describe("Recipe class", () => {
     describe("the id", () => {
         it("Should return the id of the recipe put into the class", () => {
-            const recipe = new Recipe(1, "Popcorn", "Corn, pop", "Pop the corn", true, false)
-            const recipe2 = new Recipe(2, "Buttered noodles", "butter, noodles", "butter the noodles", false, true)
+            const recipe = new Recipe(1, "Popcorn", "Corn, pop", "Pop the corn", true, false, 1)
+            const recipe2 = new Recipe(2, "Buttered noodles", "butter, noodles", "butter the noodles", false, true, 1)
             expect(recipe.getId()).toEqual(1)
             expect(recipe2.getId()).toEqual(2)
         })
