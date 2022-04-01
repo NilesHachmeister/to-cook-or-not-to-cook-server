@@ -1,0 +1,108 @@
+container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.card{
+    height: 300px;
+    width: 200px;
+    margin: 20px;
+    padding: 10px;
+    justify-content: center;
+    background-color: rgb(255 246 231);
+    border-radius: 9px;
+    box-shadow: -4px -3px 45px 21px rgba(0,0,0,0.35);
+
+}
+    
+img{
+    margin-bottom: 20px;
+    position: absolute;
+    bottom: 45px;
+    display: wrap;
+    width: 80%;
+    align-items: center;
+
+}
+    
+.buttoncard{
+    margin-left: 60px;
+    background-color: rgb(214 217 220);
+    color:black;
+    width: 45%;
+    font-size: 12px;
+    border-radius: 5px;
+    border: 1px;
+    border-color: rgb(214 217 220);
+    display: inline;
+    position: absolute;
+    bottom: 15px;
+    right:15px;
+    
+}
+
+.buttoncard:hover{
+    border-radius: 8px;
+    background-color:green(160, 25, 25);
+    color: red;
+
+}
+
+
+.is-info {
+    background-color: rgb(214 217 220);
+    color: rgb(0, 0, 0);
+}
+
+.level-right{
+    margin-right: 15px;
+}
+
+.active.post-img i{
+    animation: heart 1s linear;
+}
+
+@keyframes heart {
+    0%{
+        opacity: 0;
+        transform: scale(0);
+    }
+    50%{
+        opacity: 1;
+        transform: scale(6);
+    }
+}
+
+.reactions{
+    margin-top: 1rem;
+}
+
+.reactions i{
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.react-links i{
+    margin-right: 10px;
+}
+
+i.fa-heart:hover{
+    color: red;
+}
+
+.caption{
+    margin-top: 10px;
+    display: flex;
+}
+
+.caption .profile-name{
+    font-size: 1rem;
+    font-weight: 800;
+    margin-right: 10px;
+}
+
+.level{
+    margin-top: 9px;
+}

@@ -1,0 +1,206 @@
+body{
+    font-size: large;
+    background-color: white;
+
+}
+
+.top-bar{
+    font-family: sans-serif;
+    background-image:url("https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/cute-kawaii-food-pattern-valentina-hramov.jpg");
+    /* background-attachment: fixed; */
+    background-repeat: no-repeat;
+    background-size:cover;
+    justify-content: center;
+    height: 200px;
+    margin-bottom: 20px;
+    width: 100%;
+
+}
+
+h1{
+    color: white;
+    padding: 0;
+    text-align: center;
+
+}
+
+.column{
+    background-color: white;
+    padding: 12px;
+
+}
+
+.hero.is-info.is-small {
+    background-color: #FFFFFF;
+    color: #fff;
+}
+
+.hero-body{
+    background-color: rgb(214 217 220);
+}
+
+.title{
+    padding-bottom: 15px;
+}
+
+.sider{
+    background-color: rgb(214 217 220);
+    margin-top: 12px;
+    margin-bottom: 12px;
+
+}
+
+.button{
+    margin-top: 1em;
+    background-color: rgb(214 217 220);
+    border-radius: 5px;
+}
+
+.fa-plus{
+    background-color: rgb(214 217 220);
+    
+}
+
+.footer{
+    justify-content: center;
+    padding: 0;
+    margin-top: 1em;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+
+}
+
+li button{
+    width: 100%;
+    border: 0;
+    margin-bottom: 5px;
+
+}
+
+[contentEditable=true]:empty:not(:focus):before{
+    content:attr(data-text)
+}
+
+.card-header-title{
+    max-width: 80%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    border: 1px solid grey;
+    border-radius: 5px;
+    min-height: 50px;
+
+}
+
+.card-header {
+    background-color: transparent;
+    align-items: stretch;
+    box-shadow: none;
+    display: flex;
+    justify-content: center;
+    padding-top: 12px;
+
+}
+
+.card-content {
+    background-color: transparent;
+    padding: 1.5rem;
+    padding-top: 0px;
+   
+}
+
+.btn-container{
+    display: flex;
+    justify-content:space-between;
+    flex-wrap: wrap;
+
+}
+
+.text-input-for-recipe{
+    width: 100%;
+    min-height: 50px;
+    border: 1px solid grey;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+
+}
+
+[contentEditable=true]:empty:not(:focus):before{
+    content:attr(data-text)
+
+}
+
+.is-6{
+    margin-top: 12px;
+}
+
+.container{
+    justify-content: center;
+
+}
+
+.save-recipe{
+    margin-right: 12px;
+
+}
+
+.favorite-btn{
+    margin-right: 12px;
+}
+
+.button.is-hovered, .button:hover {
+    border-color: #4a4a4a;
+    color: red;
+}
+
+.fa-plus:before {
+    content: "\f067";
+    background-color: rgb(214 217 220);
+    align-items: center;
+}
+
+.columns:not(:last-child) {
+    margin-bottom: calc(1.5rem - 0.75rem);
+    margin-right: 0px;
+}
+
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: 40px;
+    color: white;
+    background-color: rgb(214 217 220);
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    align-items: center;
+}
+
+p{
+    margin-top: 12px;
+}
+
+i {
+    font-style:normal;
+}
+
+.text-input-for-recipe {
+    padding-left: 5px;
+
+}
+
+.card {
+    background-color: rgb(255 246 231);
+    box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%);
+    color: #4a4a4a;
+    max-width: 100%;
+    position: relative;
+    border-radius: 9px;
+    box-shadow: -4px -3px 30px 6px rgb(0 0 0 / 35%);
+
+}
+
+
+

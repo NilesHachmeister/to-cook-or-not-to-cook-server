@@ -1,0 +1,194 @@
+:root{
+    --background: #333366;
+    --light: #ccccff;    
+}
+
+#sidebar{
+    background-color: var(--light);
+}
+
+#search-results{
+    background-color: var(--background);
+}
+
+@media screen {
+    
+}
+
+.top-img{
+ height: 200px;
+
+}
+
+span {
+    color: black;
+    border: none;
+}
+
+.subtitle { 
+    font-weight: bolder;
+    font-style:normal;
+}
+
+#main-title {
+    font-weight: bolder;
+    font-style: normal;
+
+}
+
+.hero-body{
+    display: flex;
+    justify-content: center;
+}
+
+.has-text-centered{
+    background-color: rgb(255, 255, 255);
+    opacity: 75%;
+    width: 50%;
+    position: absolute;
+    top: 10%;
+    display: relative;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#header-pic {
+    background-image:url("https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/cute-kawaii-food-pattern-valentina-hramov.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    justify-content: center;
+    height: 200px;
+    margin-bottom: 20px;
+    width: 100%;
+    transform: translate(10px);
+}
+
+container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card{
+    height: 300px;
+    width: 200px;
+    margin: 20px;
+    padding: 10px;
+    width: 200px;
+    justify-content: center;
+    background-color: rgb(245, 240, 231);
+    border-radius: 9px;
+    box-shadow: -4px -3px 45px 21px rgba(0,0,0,0.35);
+}
+    
+img{
+    margin-bottom: 20px;
+    position: absolute;
+    bottom: 45px;
+    display: block;
+    width: 80%;
+    align-content: center;
+    right: 20px;
+}
+    
+.buttoncard{
+    margin-left: 60px;
+    background-color: rgb(214 217 220);
+    color:black;
+    width: 45%;
+    font-size: 12px;
+    border-radius: 5px;
+    border: 1px;
+    border-color: rgb(214 217 220);
+    display: block;
+    position: absolute;
+    bottom: 15px;
+    right:15px;
+    
+}
+
+.hero.is-info {
+    background-color: white;
+    color: #fff;
+
+}
+
+footer {
+    width: 100%;
+}
+    
+img{
+    margin-bottom: 20px;
+    position: absolute;
+    bottom: 45px;
+    display: wrap;
+    width: 80%;
+    align-items: center;
+
+}
+
+.buttoncard.is-hovered, .buttoncard:hover{
+    border-color: #4a4a4a;
+    border: 1px;
+    color: red;
+
+}
+
+/* i.fa-heart:hover{
+    color: red;
+    border-color: #4a4a4a;
+    border: 1px;
+} */
+
+.is-info {
+    background-color: rgb(214 217 220);
+    color: rgb(0, 0, 0);
+}
+
+.level-right{
+    margin-right: 15px;
+}
+
+.active.post-img i{
+    animation: heart 1s linear;
+}
+
+@keyframes heart {
+    0%{
+        opacity: 0;
+        transform: scale(0);
+    }
+    50%{
+        opacity: 1;
+        transform: scale(6);
+    }
+}
+
+.reactions{
+    margin-top: 1rem;
+}
+
+.reactions i{
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.react-links i{
+    margin-right: 10px;
+}
+
+.caption{
+    margin-top: 10px;
+    display: flex;
+}
+
+.caption .profile-name{
+    font-size: 1rem;
+    font-weight: 800;
+    margin-right: 10px;
+}
+
+.level{
+    margin-top: 9px;
+    flex-wrap: wrap;
+}
