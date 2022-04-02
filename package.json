@@ -10,7 +10,8 @@
   "scripts": {
     "start": "node server.js",
     "test": "jest",
-    "watch": "nodemon server.js"
+    "watch": "nodemon server.js",
+    "seed": "node seeds/seed.js"
   },
   "repository": {
     "type": "git",

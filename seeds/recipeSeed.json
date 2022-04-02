@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Mac and Cheese",
+        "ingredients": "mac, cheese",
+        "instructions": "cook it",
+        "favorite": "true",
+        "created": "false",
+        "human": "true"
+    },
+    {
+        "name": "Buttered Noodles",
+        "ingredients": "butter and noodles",
+        "instructions": "butter the noodles",
+        "favorite": "false",
+        "created": "true",
+        "human": "true"
+    },
+    {
+        "name": "Peanut Butter banana",
+        "ingredients": "Peanut butter, bananas",
+        "instructions": "butter the banana",
+        "favorite": "true",
+        "created": "false",
+        "human": "false"
+    }
+]

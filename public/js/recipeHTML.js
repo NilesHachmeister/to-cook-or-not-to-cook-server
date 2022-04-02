@@ -244,8 +244,8 @@ function isEvenOrOdd(currentRecipeNumber) {
 
 
 
-// this function saves recipes and puts them into local storage
-function saveRecipe() {
+
+const saveRecipe = async () => {
 
     // this delares the saved recipe object that all recipes will be stored in. It also sets the created atrubite to true, indicating that the recipe wasn't only taken from the api
     let savedRecipeObj = {
@@ -254,7 +254,6 @@ function saveRecipe() {
         instrcuctions: "",
         favorite: false,
         created: true,
-        recipeNumber: 0,
     }
 
     // this gets the new reciepes name
@@ -323,8 +322,14 @@ function saveRecipe() {
         savedRecipe.push(savedRecipeObj);
     }
 
-    // this sets the savedRecipe array to local storage
-    localStorage.setItem("savedRecipe", JSON.stringify(savedRecipe));
+    const response = await fetch('/api/recipe', {
+        method: 'POST',
+        body: JSON.stringify(savedRecipeObj),
+        headers: { 'Content-Type': 'application/json' },
+    });
+    if (response.ok) {
+        document.location.replace('/recipe');
+    }
 }
 
 // This function checks 
@@ -422,38 +427,19 @@ function sortByCreated() {
 // this function removes a recipe
 function removeRecipe() {
 
-    // this gets the recipe data-id number
-    let thisElement = $(this).parent(".btn-container").parent(".content").parent(".card-content").parent(".card").children(".card-header").children(".card-header-title")
-    let thisDataId = thisElement.attr("data-id")
-
-    // this for loop checks every recipe
-    for (let index = 0; index < savedRecipe.length; index++) {
-        const element = savedRecipe[index].recipeNumber;
-
-        // if the id number matches the one that is clicked then the recipe is spliced out of the array
-        if (element == thisDataId) {
-            savedRecipe.splice(index, 1)
-
-            // this function resets all of the recipes to new id numbers
-            resentDataIDs()
-
-            // the page is reloaded without the removed recipe
-            location.reload()
-        }
-    }
-}
+    let thisElement = $(this).parent(".btn-container").parent(".content").parent(".card-content").parent(".card").children(".card-header").children(".card-header-title");
+    let id = thisElement.attr("data-id");
 
 
-// this function resets all recipes data id
-function resentDataIDs() {
 
-    // this takes each recipe and sets its data id number to the index
-    for (let index = 0; index < savedRecipe.length; index++) {
-        savedRecipe[index].recipeNumber = index
+    const response = await fetch(`/api/posts/${id}`, {
+        method: 'DELETE',
+    });
+    if (response.ok) {
+        document.location.replace('/recipe');
     }
 
-    // this saves them into local storage
-    localStorage.setItem("savedRecipe", JSON.stringify(savedRecipe));
+
 }
 
 

@@ -66,6 +66,10 @@ Recipe.init(
             type: DataTypes.BOOLEAN,
             allowNull: false,
         },
+        human: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+        },
         user_id: {
             type: DataTypes.INTEGER,
             references: {

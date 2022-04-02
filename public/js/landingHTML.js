@@ -1,9 +1,12 @@
+
+
+
 // declaring variables
 let modalBtn = $("#modal-btn")
 let intolerantParams = "";
 let intolerantArray = [];
 let searchTerm = ""
-let spoonacularAPIKey = ""
+let spoonacularAPIKey = process.env.SPOONACULAR_API_KEY;
 let googleAPIKey = ""
 let spoonURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonacularAPIKey}`;
 let googleURL = `https://www.google.com/maps/embed/v1/search?key=${googleAPIKey}&q=restaurantst&zoom=14`
@@ -23,7 +26,7 @@ function init() {
     getStoredIntolerants()
 
     // this compiles all of the current intolerances
-    // compileParams()
+    compileParams()
 
     // this calls the api to get the map
     // getMap()
@@ -302,7 +305,7 @@ function addSearchTerm() {
 
 
 // builds an object based on the ingredients in the chosen recipe
-function buildRecipeToSave(data2) {
+const buildRecipeToSave = async (data2) => {
 
     // this delares the saved recipe object that all recipes will be stored in. It also sets the created atrubite to false indicating that the user has not changed any aspects of this recipe
     let savedRecipeObj = {
@@ -311,7 +314,7 @@ function buildRecipeToSave(data2) {
         instrcuctions: "",
         favorite: false,
         created: false,
-        recipeNumber: 0,
+        human: true
     }
 
     // this runs through each ingredient
@@ -334,11 +337,16 @@ function buildRecipeToSave(data2) {
 
     // this sets the name of the recipe and gives it a data id number
     savedRecipeObj.name = data2.title
-    savedRecipeObj.recipeNumber = savedRecipe.length
 
-    // this pushes the new object to the savedRecipe array and saves that to local storage
-    savedRecipe.push(savedRecipeObj);
-    localStorage.setItem("savedRecipe", JSON.stringify(savedRecipe));
+
+    const response = await fetch('/api/recipe', {
+        method: 'POST',
+        body: JSON.stringify(savedRecipeObj),
+        headers: { 'Content-Type': 'application/json' },
+    });
+    if (response.ok) {
+        document.location.replace('/recipe');
+    }
 }
 
 
