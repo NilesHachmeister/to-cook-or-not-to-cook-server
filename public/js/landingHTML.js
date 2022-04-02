@@ -28,7 +28,7 @@ function init() {
     // this calls the api to get the map
     // getMap()
 
- 
+
 }
 
 
@@ -365,10 +365,10 @@ $("#see-recipe-btn").on("click", saveInts)
 $("#search-google-btn").on("click", searchGoogleMaps)
 
 
-// this takes the user to the recipe page
-$("#go-to-recipes-button").on("click", function () {
-    document.location.replace('./recipes.html');
-})
+// // this takes the user to the recipe page
+// $("#go-to-recipes-button").on("click", function () {
+//     document.location.replace('./recipes.html');
+// })
 
 
 // this is an event listener for the dropdown

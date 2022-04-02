@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "node server.js",
-    "test": "jest"
+    "test": "jest",
+    "watch": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -22,15 +23,18 @@
     "url": "https://github.com/NilesHachmeister/to-cook-or-not-to-cook/issues"
   },
   "dependencies": {
-    "jest": "^27.5.1",
+    "bcrypt": "^5.0.1",
     "connect-session-sequelize": "7.1.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
     "express-session": "1.17.2",
+    "jest": "^27.5.1",
     "mysql2": "^2.2.5",
-    "sequelize": "^6.3.5",
-    "bcrypt": "^5.0.1"
+    "sequelize": "^6.3.5"
   },
-  "homepage": "https://github.com/NilesHachmeister/to-cook-or-not-to-cook#readme"
+  "homepage": "https://github.com/NilesHachmeister/to-cook-or-not-to-cook#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
 }
