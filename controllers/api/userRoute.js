@@ -4,9 +4,6 @@ const { User } = require('../../models');
 
 // route is /api/users/
 
-// need to add a sign out functionality
-
-
 
 // this creates a new user into the database based on the input 
 router.post('/', async (req, res) => {
@@ -86,7 +83,17 @@ router.post('/login', async (req, res) => {
 
 router.post('/logout', async (req, res) => {
 
+    if (req.session.loggedIn) {
+
+        req.session.destroy(() => {
+            res.redirect('/');
+            return;
+        });
+    } else {
+        res.status(404).end();
+    }
 });
+
 
 
 

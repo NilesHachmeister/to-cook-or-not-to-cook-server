@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Recipe, User } = require('../../model');
+const { Recipe, User } = require('../../models');
 
 
 // add middlewear for checking if the user is logged in
@@ -9,6 +9,8 @@ const { Recipe, User } = require('../../model');
 
 router.get('/', async (req, res) => {
 
+
+    
 });
 
 router.get('/:id', async (req, res) => {

@@ -8,7 +8,7 @@
     "test": "test"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "node server.js",
     "test": "jest"
   },
   "repository": {
@@ -29,7 +29,8 @@
     "express-handlebars": "^5.2.0",
     "express-session": "1.17.2",
     "mysql2": "^2.2.5",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "bcrypt": "^5.0.1"
   },
   "homepage": "https://github.com/NilesHachmeister/to-cook-or-not-to-cook#readme"
 }
