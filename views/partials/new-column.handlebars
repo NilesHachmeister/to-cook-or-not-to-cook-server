@@ -1,0 +1,26 @@
+<div class="columns recipe-container">
+    <div class="card">
+        <header class="card-header">
+            <p id={{id}} class="card-header-title" contenteditable="true" data-id="{{id}}">{{name}}</p>
+        </header>
+        <div class="card-content">
+            <div class="content">
+                <p>Ingredients:</p>
+                <div class="control has-icons-left has-icons-right ingredients">
+                    <div class="text-input-for-recipe" contenteditable="true">
+                        {{ingredients}}
+                    </div>
+                </div>
+                <p>How To Cook:</p>
+                <div class="control has-icons-left has-icons-right directions">
+                    <div class="text-input-for-recipe" contenteditable="true">
+                        {{instructions}}
+                    </div>
+                </div>
+                <div class="btn-container"><button class="button save-recipe"><i>Save</i></button><button
+                        class="button favorite-btn"><i>Mark as Favorite</i></button><button
+                        class="button remove-recipe-btn"><i>Remove recipe</i></button>
+                </div>
+            </div>
+        </div>
+    </div>

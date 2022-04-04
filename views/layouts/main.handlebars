@@ -23,22 +23,44 @@
     <link rel="stylesheet" href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css" />
 
 
+    <nav class="navbar navbar-expand-lg">
+        <div class="" id="navbarNav">
+            {{#if req.session.loggedIn}}
+            <li class="nav-item p-1 mx-4">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
+            {{else}}
+            <li class="nav-item p-1 mx-4">
+                <a class="nav-link" href="/login">Login</a>
+            </li>
+            {{/if}}
 
-{{{body}}}
+            </ul>
+        </div>
+    </nav>
 
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="https://unpkg.com/bulma-modal-fx/dist/js/modal-fx.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.9.1/js/OverlayScrollbars.min.js'></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        //The first argument are the elements to which the plugin shall be initialized
-        //The second argument has to be at least a empty object or a object with your desired options
-        OverlayScrollbars(document.querySelectorAll("body"), {});
-    });
-</script>
-<script src="/js/landingHTML.js"></script>
 
-</body>
+
+
+    {{{body}}}
+
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            //The first argument are the elements to which the plugin shall be initialized
+            //The second argument has to be at least a empty object or a object with your desired options
+            OverlayScrollbars(document.querySelectorAll("body"), {});
+        });
+    </script>
+
+    <script src="https://unpkg.com/bulma-modal-fx/dist/js/modal-fx.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.9.1/js/OverlayScrollbars.min.js'></script>
+    <script src="/js/recipeHTML.js"></script>
+    <script src="/js/login.js"></script>
+
+
+    </body>
 
 </html>
