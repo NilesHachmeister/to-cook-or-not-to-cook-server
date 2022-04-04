@@ -1,15 +1,15 @@
-body{
+body {
     font-size: large;
     background-color: white;
 
 }
 
-.top-bar{
+.top-bar {
     font-family: sans-serif;
-    background-image:url("https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/cute-kawaii-food-pattern-valentina-hramov.jpg");
+    background-image: url("https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/cute-kawaii-food-pattern-valentina-hramov.jpg");
     /* background-attachment: fixed; */
     background-repeat: no-repeat;
-    background-size:cover;
+    background-size: cover;
     justify-content: center;
     height: 200px;
     margin-bottom: 20px;
@@ -17,14 +17,14 @@ body{
 
 }
 
-h1{
+h1 {
     color: white;
     padding: 0;
     text-align: center;
 
 }
 
-.column{
+.column {
     background-color: white;
     padding: 12px;
 
@@ -35,33 +35,33 @@ h1{
     color: #fff;
 }
 
-.hero-body{
+.hero-body {
     background-color: rgb(214 217 220);
 }
 
-.title{
+.title {
     padding-bottom: 15px;
 }
 
-.sider{
+.sider {
     background-color: rgb(214 217 220);
     margin-top: 12px;
     margin-bottom: 12px;
 
 }
 
-.button{
+.button {
     margin-top: 1em;
     background-color: rgb(214 217 220);
     border-radius: 5px;
 }
 
-.fa-plus{
+.fa-plus {
     background-color: rgb(214 217 220);
-    
+
 }
 
-.footer{
+.footer {
     justify-content: center;
     padding: 0;
     margin-top: 1em;
@@ -72,18 +72,18 @@ h1{
 
 }
 
-li button{
+li button {
     width: 100%;
     border: 0;
     margin-bottom: 5px;
 
 }
 
-[contentEditable=true]:empty:not(:focus):before{
-    content:attr(data-text)
+[contentEditable=true]:empty:not(:focus):before {
+    content: attr(data-text)
 }
 
-.card-header-title{
+.card-header-title {
     max-width: 80%;
     background-color: #ffffff;
     display: flex;
@@ -108,17 +108,17 @@ li button{
     background-color: transparent;
     padding: 1.5rem;
     padding-top: 0px;
-   
+
 }
 
-.btn-container{
+.btn-container {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     flex-wrap: wrap;
 
 }
 
-.text-input-for-recipe{
+.text-input-for-recipe {
     width: 100%;
     min-height: 50px;
     border: 1px solid grey;
@@ -127,30 +127,30 @@ li button{
 
 }
 
-[contentEditable=true]:empty:not(:focus):before{
-    content:attr(data-text)
-
+[contentEditable=true]:empty:not(:focus):before {
+    content: attr(data-text)
 }
 
-.is-6{
+.is-6 {
     margin-top: 12px;
 }
 
-.container{
+.container {
     justify-content: center;
 
 }
 
-.save-recipe{
+.save-recipe {
     margin-right: 12px;
 
 }
 
-.favorite-btn{
+.favorite-btn {
     margin-right: 12px;
 }
 
-.button.is-hovered, .button:hover {
+.button.is-hovered,
+.button:hover {
     border-color: #4a4a4a;
     color: red;
 }
@@ -160,6 +160,7 @@ li button{
     background-color: rgb(214 217 220);
     align-items: center;
 }
+
 
 .columns:not(:last-child) {
     margin-bottom: calc(1.5rem - 0.75rem);
@@ -178,12 +179,12 @@ li button{
     align-items: center;
 }
 
-p{
+p {
     margin-top: 12px;
 }
 
 i {
-    font-style:normal;
+    font-style: normal;
 }
 
 .text-input-for-recipe {
@@ -201,6 +202,3 @@ i {
     box-shadow: -4px -3px 30px 6px rgb(0 0 0 / 35%);
 
 }
-
-
-

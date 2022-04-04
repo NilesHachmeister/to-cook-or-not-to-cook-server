@@ -6,7 +6,8 @@ let modalBtn = $("#modal-btn")
 let intolerantParams = "";
 let intolerantArray = [];
 let searchTerm = ""
-let spoonacularAPIKey = process.env.SPOONACULAR_API_KEY;
+// let spoonacularAPIKey = process.env.SPOONACULAR_API_KEY;
+let spoonacularAPIKey = "";
 let googleAPIKey = ""
 let spoonURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonacularAPIKey}`;
 let googleURL = `https://www.google.com/maps/embed/v1/search?key=${googleAPIKey}&q=restaurantst&zoom=14`
@@ -16,8 +17,8 @@ let recipeIDArray = [];
 let recipeID = 0;
 
 
-// this is in both?
-let savedRecipe = [];
+// // this is in both?
+// let savedRecipe = [];
 
 
 
@@ -282,7 +283,7 @@ function compileParams() {
     }
 
     // calling the api for recipes
-    callAPI()
+    // callAPI()
 }
 
 
@@ -295,7 +296,7 @@ function addSearchTerm() {
     searchTerm = "&query=" + searchItem
 
     // this calls the spoonacular api
-    callAPI()
+    // callAPI()
 }
 
 

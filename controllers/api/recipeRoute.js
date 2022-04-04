@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Recipe, User } = require('../../models');
+const { render } = require('../../server');
 
 
 // add middlewear for checking if the user is logged in
@@ -9,21 +10,19 @@ const { Recipe, User } = require('../../models');
 
 router.get('/', async (req, res) => {
 
-
     try {
         const dbRecipeData = await Recipe.findAll({ include: { model: User } }, { plain: true })
         const recipes = dbRecipeData.map((recipe) =>
             recipe.get({ plain: true }));
 
-        // res.render('homepage', {
-        // });
+        res.render('homepage', {
+        });
         res.status(200).json(recipes);
         // catches any errors
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
     }
-
 
 });
 
@@ -54,18 +53,24 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
 
+
+    console.log(req.session.loggedIn);
+
+
     try {
         const recipeData = await Recipe.create({
-            name: req.body.name,
-            ingredients: req.body.ingredients,
-            instructions: req.body.instructions,
-            favorite: req.body.favorite,
-            created: req.body.created,
-            human: req.body.human
+            name: "Recipe Name",
+            ingredients: "Recipe Ingredients",
+            instructions: "Recipe Dircetions",
+            favorite: false,
+            created: true,
+            human: true
         });
 
 
-        res.status(200).json(recipeData);
+        const recipe = recipeData.dataValues
+
+        res.render('recipe')
 
         // catches any errors
     } catch (err) {
@@ -77,12 +82,19 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
 
+
+    console.log("here");
+    console.log(req.body);
+
     try {
         const recipeData = await Recipe.update(
             {
                 name: req.body.name,
                 ingredients: req.body.ingredients,
                 instructions: req.body.instructions,
+                favorite: req.body.favorite,
+                created: req.body.created,
+                human: req.body.human
             },
             {
                 where: {
@@ -115,6 +127,35 @@ router.delete('/:id', async (req, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
+});
+
+
+router.get('/sortByFavorite', async (req, res) => {
+
+
+    console.log("here---------------");
+    try {
+        const dbRecipeData = await Recipe.findAll(
+
+            {
+                order: [
+                    ['id', 'DESC'],
+                    ['name', 'ASC'],
+                ],
+            }
+
+        )
+        const recipes = dbRecipeData.map((recipe) =>
+            recipe.get({ plain: true }));
+
+        res.render('/recipes', recipes)
+        res.status(200).json(recipes);
+        // catches any errors
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+
 });
 
 
