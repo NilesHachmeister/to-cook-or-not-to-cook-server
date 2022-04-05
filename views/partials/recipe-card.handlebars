@@ -17,8 +17,12 @@
                 </div>
             </div>
             <div class="btn-container"><button class="button save-recipe"><i>Save</i></button><button
-                    class="button favorite-btn"><i>Mark as Favorite</i></button><button
-                    class="button remove-recipe-btn"><i>Remove recipe</i></button>
+                    class="button favorite-btn"><i>
+                        {{#if favorite}}
+                        ⭐
+                        {{/if}}
+                        Mark as Favorite</i></button><button class="button remove-recipe-btn"><i>Remove
+                        recipe</i></button>
             </div>
         </div>
     </div>

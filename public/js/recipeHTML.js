@@ -1,7 +1,11 @@
 $(document).ready(function () {
-    let currentRecipeNumber = 0;
 
-    let savedRecipe = [];
+    const saveRecipeBtn = $(".save-recipe")
+    const removeRecipeBtn = $('.remove-recipe-btn')
+    const favoriteBtn = $('.favorite-btn')
+    const createNewRecipeBtn = $('.create-new-recipe-btn')
+    const sortByCreatedBtn = $('#sort-by-created-btn')
+    const sortByFavoriteBtn = $('#sort-by-favorite-btn')
 
 
     // this function creates an empty recipe card for the recipe.html page
@@ -20,20 +24,15 @@ $(document).ready(function () {
 
     const saveRecipe = async (e) => {
 
-        console.log(e);
         // this delares the saved recipe object that all recipes will be stored in. It also sets the created atrubite to true, indicating that the recipe wasn't only taken from the api
         let savedRecipeObj = {
             name: "",
             ingredients: "",
             instrcuctions: "",
-            favorite: false,
             created: true,
             human: true
         }
 
-        // console.log("ingredients", e.find($(".ingredients")));
-        // console.log("directions", $(".directions"));
-        // console.log("card-header-title", $(".card-header-title"));
 
 
         let newRecipeNameBox = e.parent(".btn-container").parent(".content").parent(".card-content").parent(".card").children(".card-header").children(".card-header-title");
@@ -53,15 +52,6 @@ $(document).ready(function () {
         // this grabs the data id attribute of the selected  recipe
         let thisDataId = newRecipeNameBox.attr("data-id")
 
-
-
-
-
-
-
-        console.log(savedRecipeObj);
-
-
         const response = await fetch(`/api/recipe/${thisDataId}`, {
             method: 'PUT',
             body: JSON.stringify(savedRecipeObj),
@@ -72,30 +62,32 @@ $(document).ready(function () {
         }
     }
 
-    // This function checks 
-    function findFavoriteRecipeID() {
-
-        // this finds the data id of the clicked card
-        let thisElement = $(this).parent(".btn-container").parent(".content").parent(".card-content").parent(".card").children(".card-header").children(".card-header-title")
-        let thisDataId = thisElement.attr("data-id")
-
-        // this sends the data id to the add favorite function to give that chosen card the value of favorite
-        addFavoriteToObject(thisDataId)
-    }
 
     // this function takes the given ID and sets its corrosponding recipe object to favorite
-    function addFavoriteToObject(thisDataId) {
+    const addFavoriteToObject = async (e) => {
 
-        // This checks each recipe, if the ID matches it sets the favorite atribute to true
-        for (let index = 0; index < savedRecipe.length; index++) {
-            const element = savedRecipe[index].recipeNumber;
-            if (element == thisDataId) {
-                savedRecipe[index].favorite = true
-            }
+        // this finds the data id of the clicked card
+        let thisElement = e.parent(".btn-container").parent(".content").parent(".card-content").parent(".card").children(".card-header").children(".card-header-title")
+        let thisDataId = thisElement.attr("data-id")
+
+        let savedRecipeObj = {
+            favorite: true,
         }
 
-        // this saves it into local storage
-        localStorage.setItem("savedRecipe", JSON.stringify(savedRecipe));
+        console.log("here");
+
+        console.log(savedRecipeObj);
+
+        const response = await fetch(`/api/recipe/${thisDataId}`, {
+            method: 'PUT',
+            body: JSON.stringify(savedRecipeObj),
+            headers: { 'Content-Type': 'application/json' },
+        });
+        if (response.ok) {
+            document.location.replace('/recipe');
+        }
+
+
     }
 
 
@@ -149,23 +141,17 @@ $(document).ready(function () {
 
 
     // this function removes a recipe
+    const removeRecipe = async (e) => {
 
-    const removeRecipe = async () => {
-
-
-        let thisElement = $(this).parent(".btn-container").parent(".content").parent(".card-content").parent(".card").children(".card-header").children(".card-header-title");
+        let thisElement = e.parent(".btn-container").parent(".content").parent(".card-content").parent(".card").children(".card-header").children(".card-header-title");
         let id = thisElement.attr("data-id");
 
-
-
-        const response = await fetch(`/api/posts/${id}`, {
+        const response = await fetch(`/api/recipe/${id}`, {
             method: 'DELETE',
         });
         if (response.ok) {
             document.location.replace('/recipe');
         }
-
-
     }
 
 
@@ -177,24 +163,31 @@ $(document).ready(function () {
         document.location.replace('./index.html');
     })
 
-    // $("#recipe-container").on("click", ".save-recipe", saveRecipe)
-    $("#recipe-container").on("click", ".favorite-btn", findFavoriteRecipeID)
-    $("#recipe-container").on("click", ".remove-recipe-btn", removeRecipe)
-    $("#sort-by-favorite-btn").on("click", sortByFavorite)
-    $("#sort-by-created-btn").on("click", sortByCreated)
-    $(".create-new-recipe-btn").on("click", createEmptyRecipe)
+    // $("#sort-by-favorite-btn").on("click", sortByFavorite)
+    // $("#sort-by-created-btn").on("click", sortByCreated)
+    // $(".create-new-recipe-btn").on("click", createEmptyRecipe)
 
 
-    const deletePostBtn = document.querySelector('#delete-post-btn');
 
-    const recipeContainer = $("#recipe-container")
-    const saveRecipeBtn = $(".save-recipe")
 
-    // if (saveRecipeBtn) {
-    //     saveRecipeBtn.on('click', saveRecipe);
-    // }
+    createNewRecipeBtn.on('click', createEmptyRecipe)
+
+    sortByCreatedBtn.on('click', function () {
+        sortByCreated
+    })
+    sortByFavoriteBtn.on('click', function () {
+        sortByFavorite
+    })
+
+    favoriteBtn.on('click', function () {
+        addFavoriteToObject($(this))
+    })
+
+    removeRecipeBtn.on('click', function () {
+        removeRecipe($(this))
+    })
+
     saveRecipeBtn.on('click', function () {
-        console.log($(this));
         saveRecipe($(this));
     })
 }); 
