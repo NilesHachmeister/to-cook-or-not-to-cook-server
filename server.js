@@ -19,7 +19,7 @@ const sess = {
     secret: process.env.SESSIONS_SECRET,
     cookie: {
 
-        maxAge: 600000,
+        maxAge: 6000000,
         httpOnly: true,
         secure: false,
         sameSite: 'strict',

@@ -5,7 +5,8 @@
         "instructions": "cook it",
         "favorite": "true",
         "created": "false",
-        "human": "true"
+        "human": "true",
+        "user_id": 1
     },
     {
         "name": "Buttered Noodles",
@@ -13,7 +14,8 @@
         "instructions": "butter the noodles",
         "favorite": "false",
         "created": "true",
-        "human": "true"
+        "human": "true",
+        "user_id": 1
     },
     {
         "name": "Peanut Butter banana",
@@ -21,6 +23,7 @@
         "instructions": "butter the banana",
         "favorite": "true",
         "created": "false",
-        "human": "false"
+        "human": "false",
+        "user_id": 1
     }
 ]

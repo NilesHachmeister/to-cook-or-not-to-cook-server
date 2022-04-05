@@ -25,9 +25,9 @@
 
     <nav class="navbar navbar-expand-lg">
         <div class="" id="navbarNav">
-            {{#if req.session.loggedIn}}
+            {{#if loggedIn}}
             <li class="nav-item p-1 mx-4">
-                <a class="nav-link" href="/logout">Logout</a>
+                <a class="nav-link" id="loggout-btn">Logout</a>
             </li>
             {{else}}
             <li class="nav-item p-1 mx-4">
@@ -59,6 +59,7 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.9.1/js/OverlayScrollbars.min.js'></script>
     <script src="/js/recipeHTML.js"></script>
     <script src="/js/login.js"></script>
+    <script src="/js/landingHTML.js"></script>
 
 
     </body>
