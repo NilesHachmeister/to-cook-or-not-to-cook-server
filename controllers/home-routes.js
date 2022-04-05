@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const { User, Recipe } = require('../models');
 const fetch = require('node-fetch');
-const logginCheck = require('../utils/auth')
+const logginCheck = require('../utils/auth');
+const res = require('express/lib/response');
 
 router.get('/', async (req, res) => {
 
@@ -29,7 +30,9 @@ router.get('/', async (req, res) => {
 
 router.get('/recipe', logginCheck, async (req, res) => {
 
-    const dbRecipeData = await Recipe.findAll()
+    const dbRecipeData = await Recipe.findAll(
+
+    )
     const recipes = dbRecipeData.map((recipe) =>
         recipe.get({ plain: true }));
 
@@ -41,6 +44,52 @@ router.get('/recipe', logginCheck, async (req, res) => {
     });
 
 });
+
+router.get('/recipe/sorted-by-favorite', logginCheck, async (req, res) => {
+    try {
+        const dbRecipeData = await Recipe.findAll(
+            {
+                order: [
+                    ['favorite', 'DESC'],
+                ],
+            }
+        )
+        const recipes = dbRecipeData.map((recipe) =>
+            recipe.get({ plain: true }));
+
+
+        res.render('recipe', {
+            recipes,
+            loggedIn: req.session.loggedIn,
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+})
+
+router.get('/recipe/sorted-by-created', logginCheck, async (req, res) => {
+    try {
+        const dbRecipeData = await Recipe.findAll(
+            {
+                order: [
+                    ['created', 'DESC'],
+                ],
+            }
+        )
+        const recipes = dbRecipeData.map((recipe) =>
+            recipe.get({ plain: true }));
+
+
+        res.render('recipe', {
+            recipes,
+            loggedIn: req.session.loggedIn,
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+})
 
 
 // this renders the login page for the user

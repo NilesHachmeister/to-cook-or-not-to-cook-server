@@ -80,7 +80,7 @@ function callAPIByID() {
 function saveInts() {
 
     // this clears local storage and the old array before adding what we currently want to save
-    
+
     // this checks each checkbox, if they are checked the value is pushed into the array
     console.log("save button clicked");
     if ($('#intolerance1').is(':checked')) {
@@ -237,17 +237,22 @@ function addSearchTerm() {
 // builds an object based on the ingredients in the chosen recipe
 const saveRecipeToDb = async (e) => {
 
+    console.log(e);
+
     const id = e.attr("data-id")
 
-    console.log(id);
     const response = await fetch(`/api/recipe/spoon/${id}`, {
         method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-    });
-    console.log(response);
-    sendRecipeToDb(response)
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+    })
 
+    let dataBack;
+    await response.json().then(data => { dataBack = data });
 
+    sendRecipeToDb(dataBack)
 }
 
 const sendRecipeToDb = async (data2) => {
@@ -258,7 +263,10 @@ const sendRecipeToDb = async (data2) => {
     let savedRecipeObj = {
         name: "",
         ingredients: "",
-        instrcuctions: "",
+        instructions: "",
+        favorite: false,
+        created: false,
+        human: true
     }
 
     // this runs through each ingredient
@@ -276,11 +284,13 @@ const sendRecipeToDb = async (data2) => {
 
     // this runs through each step in the instructions and adds them to the steps variable
     for (let index = 0; index < data2.analyzedInstructions[0].steps.length; index++) {
-        savedRecipeObj.instrcuctions += ((index + 1) + " " + data2.analyzedInstructions[0].steps[index].step + " " + "<br>")
+        savedRecipeObj.instructions += ((index + 1) + " " + data2.analyzedInstructions[0].steps[index].step + " " + "<br>")
     }
 
     // this sets the name of the recipe and gives it a data id number
     savedRecipeObj.name = data2.title
+
+    console.log(savedRecipeObj);
 
 
     const response = await fetch('/api/recipe/new', {
@@ -291,22 +301,7 @@ const sendRecipeToDb = async (data2) => {
     if (response.ok) {
         document.location.replace('/recipe');
     }
-
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -315,13 +310,8 @@ init()
 
 
 
-
-
 saveRecipeToDbBtn.on('click', function () {
-    console.log("here");
-    console.log($(this));
     saveRecipeToDb($(this))
-
 })
 
 
