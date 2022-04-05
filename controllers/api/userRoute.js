@@ -9,6 +9,7 @@ const { User } = require('../../models');
 router.post('/', async (req, res) => {
 
     // this creates the user
+    // this creates the user
     try {
 
         const newUser = req.body;
@@ -21,14 +22,9 @@ router.post('/', async (req, res) => {
         req.session.save(() => {
             req.session.loggedIn = true;
             req.session.user_id = dbUserData.id;
-
-
+            res.status(200).json(dbUserData);
         });
 
-        console.log(req.session.loggedIn);
-
-
-        res.status(200).json(dbUserData);
         // catches any errors
     } catch (err) {
         console.log(err);

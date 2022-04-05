@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Recipe, User } = require('../../models');
 const { render } = require('../../server');
 const fetch = require('node-fetch');
+const logginCheck = require('../../utils/auth')
 
 
 // add middlewear for checking if the user is logged in
@@ -53,7 +54,7 @@ router.get('/:id', async (req, res) => {
 
 
 
-router.post('/new', async (req, res) => {
+router.post('/new', logginCheck, async (req, res) => {
 
     try {
         const recipeData = await Recipe.create({
@@ -79,7 +80,14 @@ router.post('/new', async (req, res) => {
 
 
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', logginCheck, async (req, res) => {
+
+
+
+    console.log(req.session);
+
+    console.log("----------------rs");
+
     try {
         const recipeData = await Recipe.update(
             {
@@ -106,7 +114,7 @@ router.put('/:id', async (req, res) => {
 });
 
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', logginCheck, async (req, res) => {
 
     try {
         const recipeData = await Recipe.destroy({
@@ -124,7 +132,7 @@ router.delete('/:id', async (req, res) => {
 });
 
 
-router.get('/sortByFavorite', async (req, res) => {
+router.get('/sortByFavorite', logginCheck, async (req, res) => {
 
 
     console.log("here---------------");
@@ -154,9 +162,7 @@ router.get('/sortByFavorite', async (req, res) => {
 
 
 
-router.post('/', async (req, res) => {
-
-    console.log(loggedIn);
+router.post('/', logginCheck, async (req, res) => {
 
     try {
         const recipeData = await Recipe.create({

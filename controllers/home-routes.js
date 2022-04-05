@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { User, Recipe } = require('../models');
 const fetch = require('node-fetch');
+const logginCheck = require('../utils/auth')
 
 router.get('/', async (req, res) => {
 
@@ -26,7 +27,7 @@ router.get('/', async (req, res) => {
 });
 
 
-router.get('/recipe', async (req, res) => {
+router.get('/recipe', logginCheck, async (req, res) => {
 
     const dbRecipeData = await Recipe.findAll()
     const recipes = dbRecipeData.map((recipe) =>
