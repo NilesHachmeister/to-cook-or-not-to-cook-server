@@ -17,7 +17,7 @@ let recipeIDArray = [];
 let recipeID = 0;
 
 
-const saveRecipeToDbBtn = $('save-recipe-to-db')
+const saveRecipeToDbBtn = $('.save-recipe-to-db')
 
 
 // // this is in both?
@@ -27,10 +27,10 @@ const saveRecipeToDbBtn = $('save-recipe-to-db')
 
 function init() {
     //  this gets all of the stored intolerant items
-    getStoredIntolerants()
+    // getStoredIntolerants()
 
     // this compiles all of the current intolerances
-    compileParams()
+    // compileParams()
 
     // this calls the api to get the map
     // getMap()
@@ -72,18 +72,7 @@ function searchGoogleMaps() {
 // this calls the api by id inorder to get detailed infforamion on the recipe
 function callAPIByID() {
 
-    // this fetches for a detailed search of the given recipe
-    ; fetch(`https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${spoonacularAPIKey}`)
-        .then(function (response2) {
 
-            // this takes that response and turns it into json format
-            return response2.json();
-        })
-        .then(function (data2) {
-
-            // this takes that data and sends it to a function designed to compile the information into an object annd save that object into local storage.
-            buildRecipeToSave(data2)
-        });
 }
 
 
@@ -91,9 +80,7 @@ function callAPIByID() {
 function saveInts() {
 
     // this clears local storage and the old array before adding what we currently want to save
-    localStorage.removeItem("intolerantArray")
-    let intolerantArray = [];
-
+    
     // this checks each checkbox, if they are checked the value is pushed into the array
     console.log("save button clicked");
     if ($('#intolerance1').is(':checked')) {
@@ -248,16 +235,30 @@ function addSearchTerm() {
 
 
 // builds an object based on the ingredients in the chosen recipe
-const saveRecipeToDb = async (data2) => {
+const saveRecipeToDb = async (e) => {
 
-    // this delares the saved recipe object that all recipes will be stored in. It also sets the created atrubite to false indicating that the user has not changed any aspects of this recipe
+    const id = e.attr("data-id")
+
+    console.log(id);
+    const response = await fetch(`/api/recipe/spoon/${id}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+    });
+    console.log(response);
+    sendRecipeToDb(response)
+
+
+}
+
+const sendRecipeToDb = async (data2) => {
+
+
+    console.log(data2);
+
     let savedRecipeObj = {
         name: "",
         ingredients: "",
         instrcuctions: "",
-        favorite: false,
-        created: false,
-        human: true
     }
 
     // this runs through each ingredient
@@ -282,7 +283,7 @@ const saveRecipeToDb = async (data2) => {
     savedRecipeObj.name = data2.title
 
 
-    const response = await fetch('/api/recipe', {
+    const response = await fetch('/api/recipe/new', {
         method: 'POST',
         body: JSON.stringify(savedRecipeObj),
         headers: { 'Content-Type': 'application/json' },
@@ -290,7 +291,17 @@ const saveRecipeToDb = async (data2) => {
     if (response.ok) {
         document.location.replace('/recipe');
     }
-}
+
+};
+
+
+
+
+
+
+
+
+
 
 
 
@@ -307,8 +318,9 @@ init()
 
 
 saveRecipeToDbBtn.on('click', function () {
-
-    saveRecipeToDb
+    console.log("here");
+    console.log($(this));
+    saveRecipeToDb($(this))
 
 })
 

@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { Recipe, User } = require('../../models');
 const { render } = require('../../server');
+const fetch = require('node-fetch');
 
 
 // add middlewear for checking if the user is logged in
@@ -51,19 +52,16 @@ router.get('/:id', async (req, res) => {
 });
 
 
-router.post('/', async (req, res) => {
 
-
-    console.log(req.session.loggedIn);
-
+router.post('/new', async (req, res) => {
 
     try {
         const recipeData = await Recipe.create({
-            name: "Recipe Name",
-            ingredients: "Recipe Ingredients",
-            instructions: "Recipe Dircetions",
+            name: req.body.name,
+            ingredients: req.body.ingredients,
+            instructions: req.body.instructions,
             favorite: false,
-            created: true,
+            created: false,
             human: true
         });
 
@@ -80,12 +78,8 @@ router.post('/', async (req, res) => {
 });
 
 
+
 router.put('/:id', async (req, res) => {
-
-
-    console.log("here");
-    console.log(req.body);
-
     try {
         const recipeData = await Recipe.update(
             {
@@ -134,29 +128,79 @@ router.get('/sortByFavorite', async (req, res) => {
 
 
     console.log("here---------------");
+    // try {
+    //     const dbRecipeData = await Recipe.findAll(
+
+    //         {
+    //             order: [
+    //                 ['favorite', 'DESC'],
+    //                 ['id', 'ASC'],
+    //             ],
+    //         }
+
+    //     )
+    //     const recipes = dbRecipeData.map((recipe) =>
+    //         recipe.get({ plain: true }));
+
+    //     res.render('/recipes', recipes)
+    //     res.status(200).json(recipes);
+    //     // catches any errors
+    // } catch (err) {
+    //     console.log(err);
+    //     res.status(500).json(err);
+    // }
+
+});
+
+
+
+router.post('/', async (req, res) => {
+
+    console.log(loggedIn);
+
     try {
-        const dbRecipeData = await Recipe.findAll(
+        const recipeData = await Recipe.create({
+            name: "Recipe Name",
+            ingredients: "Recipe Ingredients",
+            instructions: "Recipe Dircetions",
+            favorite: false,
+            created: true,
+            human: true
+        });
 
-            {
-                order: [
-                    ['id', 'DESC'],
-                    ['name', 'ASC'],
-                ],
-            }
 
-        )
-        const recipes = dbRecipeData.map((recipe) =>
-            recipe.get({ plain: true }));
+        const recipe = recipeData.dataValues
 
-        res.render('/recipes', recipes)
-        res.status(200).json(recipes);
+        res.render('recipe')
+
         // catches any errors
     } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
+        res.status(400).json(err);
     }
 
 });
+
+router.get('/spoon/:id', async (req, res) => {
+
+    // const spoonURL = `https://api.spoonacular.com/recipes/${req.params.id}/information?apiKey=${process.env.SPOONACULAR_API_KEY}`;
+
+    // // this fetches the api url with the intolerance and search term included
+    // const spoonData = await fetch(spoonURL)
+    //     .then(function (response) {
+
+
+    //         return response.json();
+    //     })
+    //     .then(function (data) {
+    //         const recipes = data
+    //         console.log(recipes);
+    //     })
+    console.log("here-----------------");
+
+    res.send("this")
+
+});
+
 
 
 

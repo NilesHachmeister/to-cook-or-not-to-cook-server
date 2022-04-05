@@ -20,42 +20,10 @@ router.get('/', async (req, res) => {
             return response.json();
         })
         .then(function (data) {
-
-
-
             const recipes = data.results
-
-            console.log(recipes);
-
-            res.render('homepage', { recipes });
-
-
+            res.render('homepage', { recipes, loggedIn: req.session.loggedIn });
         })
-
-
-    // const dbRecipeData = await Recipe.findAll()
-    // const recipes = dbRecipeData.map((recipe) =>
-    //     recipe.get({ plain: true }));
-
-    // res.render('homepage', {
-    //     recipes,
-    //     // loggedIn: req.session.loggedIn,
-    // });
-
-
-    // const dbPostData = await Post.findAll({ include: { model: User } }, { plain: true })
-    // const posts = dbPostData.map((post) =>
-    //     post.get({ plain: true }));
-
-    // res.render('homepage', {
-    //     posts,
-    //     loggedIn: req.session.loggedIn,
-    // });
-
-
-
-}
-);
+});
 
 
 router.get('/recipe', async (req, res) => {
@@ -68,7 +36,7 @@ router.get('/recipe', async (req, res) => {
 
     res.render('recipe', {
         recipes,
-        // loggedIn: req.session.loggedIn,
+        loggedIn: req.session.loggedIn,
     });
 
 });

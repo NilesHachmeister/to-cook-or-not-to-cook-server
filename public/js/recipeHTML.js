@@ -13,7 +13,7 @@ $(document).ready(function () {
 
     const createEmptyRecipe = async () => {
 
-        const response = await fetch(`/api/recipe`, {
+        const response = await fetch(`/api/recipe/new`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
         });
@@ -70,13 +70,18 @@ $(document).ready(function () {
         let thisElement = e.parent(".btn-container").parent(".content").parent(".card-content").parent(".card").children(".card-header").children(".card-header-title")
         let thisDataId = thisElement.attr("data-id")
 
+        const currentStatus = await fetch(`/api/recipe/${thisDataId}`, {
+            method: 'GET',
+            // body: JSON.stringify(savedRecipeObj),
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        console.log(currentStatus);
+
         let savedRecipeObj = {
             favorite: true,
         }
 
-        console.log("here");
-
-        console.log(savedRecipeObj);
 
         const response = await fetch(`/api/recipe/${thisDataId}`, {
             method: 'PUT',
@@ -84,7 +89,7 @@ $(document).ready(function () {
             headers: { 'Content-Type': 'application/json' },
         });
         if (response.ok) {
-            document.location.replace('/recipe');
+            // document.location.replace('/recipe');
         }
 
 
@@ -99,7 +104,9 @@ $(document).ready(function () {
         console.log("here");
 
 
-        const response = await fetch('/api/recipe/sortByFavorite');
+        const response = await fetch(`/api/recipe/sortByFavorite',{thisDataId}`, {
+            method: 'GET',
+        });
 
     }
 
@@ -160,7 +167,7 @@ $(document).ready(function () {
     $("#go-back-button").on("click", function () {
         console.log("here");
 
-        document.location.replace('./index.html');
+        document.location.replace('/');
     })
 
     // $("#sort-by-favorite-btn").on("click", sortByFavorite)
@@ -175,9 +182,7 @@ $(document).ready(function () {
     sortByCreatedBtn.on('click', function () {
         sortByCreated
     })
-    sortByFavoriteBtn.on('click', function () {
-        sortByFavorite
-    })
+    sortByFavoriteBtn.on('click', sortByFavorite)
 
     favoriteBtn.on('click', function () {
         addFavoriteToObject($(this))
