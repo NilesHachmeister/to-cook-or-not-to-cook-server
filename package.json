@@ -10,7 +10,8 @@
   "scripts": {
     "start": "node server.js",
     "test": "jest",
-    "watch": "nodemon server.js"
+    "watch": "nodemon server.js",
+    "seed": "node seeds/seed.js"
   },
   "repository": {
     "type": "git",
@@ -31,7 +32,8 @@
     "express-session": "1.17.2",
     "jest": "^27.5.1",
     "mysql2": "^2.2.5",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "node-fetch": "2.0"
   },
   "homepage": "https://github.com/NilesHachmeister/to-cook-or-not-to-cook#readme",
   "devDependencies": {

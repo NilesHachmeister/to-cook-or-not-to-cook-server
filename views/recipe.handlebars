@@ -1,5 +1,7 @@
+{{!--
+<link rel="stylesheet" href="/css/style3.css"> --}}
 <link rel="stylesheet" href="/css/stylesheet-page2.css">
-<link rel="stylesheet" href="/css/style3.css">
+
 </head>
 
 <body>
@@ -23,9 +25,19 @@
             </div>
           </div>
 
-          <div class="columns recipe-container">
 
-          </div>
+          {{#each recipes as |recipe index|}}
+          {{#if (even_number_recipes index) }}
+          {{> new-column}}
+
+          {{else}}
+          {{> recipe-card}}
+          {{/if}}
+
+          {{/each}}
+
+        </section>
+
       </div>
       <div class="column is-3 sider">
         <aside class="menu">
@@ -48,5 +60,5 @@
 
   </div>
 
-  <script src="/js/recipeHTML.js"></script>
+
 </body>
