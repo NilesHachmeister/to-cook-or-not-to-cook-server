@@ -1,9 +1,13 @@
+
+
+
 // declaring variables
 let modalBtn = $("#modal-btn")
 let intolerantParams = "";
 let intolerantArray = [];
 let searchTerm = ""
-let spoonacularAPIKey = ""
+// let spoonacularAPIKey = process.env.SPOONACULAR_API_KEY;
+let spoonacularAPIKey = "";
 let googleAPIKey = ""
 let spoonURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonacularAPIKey}`;
 let googleURL = `https://www.google.com/maps/embed/v1/search?key=${googleAPIKey}&q=restaurantst&zoom=14`
@@ -13,8 +17,11 @@ let recipeIDArray = [];
 let recipeID = 0;
 
 
-// this is in both?
-let savedRecipe = [];
+const saveRecipeToDbBtn = $('save-recipe-to-db')
+
+
+// // this is in both?
+// let savedRecipe = [];
 
 
 
@@ -23,7 +30,7 @@ function init() {
     getStoredIntolerants()
 
     // this compiles all of the current intolerances
-    // compileParams()
+    compileParams()
 
     // this calls the api to get the map
     // getMap()
@@ -59,67 +66,6 @@ function searchGoogleMaps() {
 
     // this puts the html variable into the html into the map holder
     $("#map-holder").html(userGoogleMap);
-}
-
-
-// this function calls the api for recipes
-function callAPI() {
-
-    // this fetches the api url with the intolerance and search term included
-    fetch(spoonURL + intolerantParams + searchTerm)
-        .then(function (response) {
-
-            // this takes the response and turns it into json format
-            return response.json();
-        })
-        .then(function (data) {
-
-            // this takes the data and sends it to the build card function, so that the cards ore built
-            buildCards(data)
-
-            // this takes the ids from the called recipes and stores them in an array
-            for (let index = 0; index < 6; index++) {
-                const element = data.results[index].id;
-                recipeIDArray.push(element)
-            }
-        })
-}
-
-
-// this function builds the cards on the index.html page based on the information sent back from the api
-function buildCards(data) {
-
-    // each of thhe code blocks bellow take the image and title from a given recipe and asigns their values to a card
-    let recipe1 = data.results[0].image;
-    $("#card-0-img").attr("src", recipe1)
-    let recipe1Title = data.results[0].title
-    $("#card-0-title").text(recipe1Title)
-
-
-    let recipe2 = data.results[1].image;
-    $("#card-1-img").attr("src", recipe2)
-    let recipe2Title = data.results[1].title
-    $("#card-1-title").text(recipe2Title)
-
-    let recipe3 = data.results[2].image;
-    $("#card-2-img").attr("src", recipe3)
-    let recipe3Title = data.results[2].title
-    $("#card-2-title").text(recipe3Title)
-
-    let recipe4 = data.results[3].image;
-    $("#card-3-img").attr("src", recipe4)
-    let recipe4Title = data.results[3].title
-    $("#card-3-title").text(recipe4Title)
-
-    let recipe5 = data.results[4].image;
-    $("#card-4-img").attr("src", recipe5)
-    let recipe5Title = data.results[4].title
-    $("#card-4-title").text(recipe5Title)
-
-    let recipe6 = data.results[5].image;
-    $("#card-5-img").attr("src", recipe6)
-    let recipe6Title = data.results[5].title
-    $("#card-5-title").text(recipe6Title)
 }
 
 
@@ -279,7 +225,7 @@ function compileParams() {
     }
 
     // calling the api for recipes
-    callAPI()
+    // callAPI()
 }
 
 
@@ -292,7 +238,7 @@ function addSearchTerm() {
     searchTerm = "&query=" + searchItem
 
     // this calls the spoonacular api
-    callAPI()
+    // callAPI()
 }
 
 
@@ -302,7 +248,7 @@ function addSearchTerm() {
 
 
 // builds an object based on the ingredients in the chosen recipe
-function buildRecipeToSave(data2) {
+const saveRecipeToDb = async (data2) => {
 
     // this delares the saved recipe object that all recipes will be stored in. It also sets the created atrubite to false indicating that the user has not changed any aspects of this recipe
     let savedRecipeObj = {
@@ -311,7 +257,7 @@ function buildRecipeToSave(data2) {
         instrcuctions: "",
         favorite: false,
         created: false,
-        recipeNumber: 0,
+        human: true
     }
 
     // this runs through each ingredient
@@ -334,11 +280,16 @@ function buildRecipeToSave(data2) {
 
     // this sets the name of the recipe and gives it a data id number
     savedRecipeObj.name = data2.title
-    savedRecipeObj.recipeNumber = savedRecipe.length
 
-    // this pushes the new object to the savedRecipe array and saves that to local storage
-    savedRecipe.push(savedRecipeObj);
-    localStorage.setItem("savedRecipe", JSON.stringify(savedRecipe));
+
+    const response = await fetch('/api/recipe', {
+        method: 'POST',
+        body: JSON.stringify(savedRecipeObj),
+        headers: { 'Content-Type': 'application/json' },
+    });
+    if (response.ok) {
+        document.location.replace('/recipe');
+    }
 }
 
 
@@ -354,6 +305,12 @@ init()
 
 
 
+
+saveRecipeToDbBtn.on('click', function () {
+
+    saveRecipeToDb
+
+})
 
 
 //event listeners 
