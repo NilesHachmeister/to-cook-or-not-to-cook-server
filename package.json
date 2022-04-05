@@ -11,6 +11,7 @@
     "start": "node server.js",
     "test": "jest",
     "watch": "nodemon server.js"
+    // "dev:start": "npm"
   },
   "repository": {
     "type": "git",
