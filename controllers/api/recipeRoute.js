@@ -54,18 +54,19 @@ router.post('/new', logginCheck, async (req, res) => {
 
     try {
         const recipeData = await Recipe.create({
-            name: req.body.name,
-            ingredients: req.body.ingredients,
-            instructions: req.body.instructions,
-            favorite: req.body.favorite,
-            created: req.body.created,
-            human: req.body.human
+            name: "Recipe Name",
+            ingredients: "Recipe Ingredients",
+            instructions: "Recipe Instructions",
+            favorite: false,
+            created: true,
+            human: true,
+            user_id: req.session.user_id
         });
 
-
+        res.status(200).json(recipeData);
         // catches any errors
     } catch (err) {
-
+        console.log(err);
         res.status(400).json(err);
     }
 
@@ -74,8 +75,6 @@ router.post('/new', logginCheck, async (req, res) => {
 
 
 router.put('/:id', logginCheck, async (req, res) => {
-
-    console.log(req.body);
 
     try {
         const recipeData = await Recipe.update(
@@ -93,7 +92,7 @@ router.put('/:id', logginCheck, async (req, res) => {
                 },
             });
 
-        console.log(recipeData);
+
         res.status(200).json(recipeData)
 
 

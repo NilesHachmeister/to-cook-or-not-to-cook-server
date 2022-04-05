@@ -95,7 +95,57 @@ router.post('/logout', async (req, res) => {
     }
 });
 
+router.put('/intolerances', async (req, res) => {
 
+    console.log(req.body);
+
+    console.log(req.body.intolerantParams);
+
+    try {
+        const userData = await User.update(
+            {
+                intolerances: req.body.intolerantParams,
+            },
+            {
+                where: {
+                    id: req.session.user_id,
+                },
+            });
+
+        console.log(userData);
+        res.status(200).json(userData)
+
+
+
+        // catches any errors
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
+router.get('/get-stored-ints', async (req, res) => {
+
+
+
+    let intolerantParams = "";
+
+    try {
+        if (req.session.loggedIn) {
+            const findUserData = await User.findByPk(req.session.user_id);
+            const user = findUserData.get({ plain: true });
+            intolerantParams = user.intolerances
+        }
+
+        res.json(intolerantParams);
+
+        // catches any errors
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+
+});
 
 
 

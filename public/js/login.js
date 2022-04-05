@@ -58,12 +58,12 @@ const logUserIn = async (e) => {
 const loggoutUser = async (e) => {
     e.preventDefault();
 
-    const response = await fetch('/api/user/logout', {
+    const response = await fetch('/api/users/logout', {
         method: 'POST',
         body: JSON.stringify(),
         headers: { 'Content-Type': 'application/json' },
     });
-
+    document.location.replace('/');
 
 }
 

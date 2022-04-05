@@ -17,7 +17,6 @@ $(document).ready(function () {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
         });
-
         location.reload()
     }
 

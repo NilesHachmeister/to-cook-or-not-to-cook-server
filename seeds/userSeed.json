@@ -1,0 +1,12 @@
+[
+    {
+        "username": "user1",
+        "intolerances": "",
+        "password": "123456789"
+    },
+    {
+        "username": "user2",
+        "intolerances": "",
+        "password": "123456789"
+    }
+]

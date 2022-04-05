@@ -17,6 +17,10 @@ User.init(
             allowNull: false,
             unique: true
         },
+        intolerances: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
         password: {
             type: DataTypes.STRING,
             allowNull: false,
