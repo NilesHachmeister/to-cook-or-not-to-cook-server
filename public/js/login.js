@@ -1,23 +1,28 @@
-const submitSignupBtn = document.querySelector('#submit-sign-up-btn');
-const submitLoginBtn = document.querySelector('#submit-login-btn');
-const loggOutBtn = $('#loggout-btn');
+const submitSignupBtn = $('#submit-sign-up-btn');
+const submitLoginBtn = $('#submit-login-btn');
+const logOutBtn = $('#logout-btn');
 
 // this function allows a new user to sign up
 const signupNewUser = async (e) => {
     e.preventDefault();
 
-    const username = document.querySelector('#username').value.trim();
-    const password = document.querySelector('#password').value.trim();
+    const rawUserName = $('#new-account-name');
+    const rawEmail = $('#new-account-email');
+    const rawPassword = $('#new-account-password');
+
+    const users_name = rawUserName.val().trim();
+    const email = rawEmail.val().trim();
+    const password = rawPassword.val().trim();
 
     if (password.split("").length < 8) {
         alert("password must be at least 8 characters long. Please try again");
         return;
     }
 
-    if (username && password) {
+    if (users_name && email && password) {
         const response = await fetch('/api/users', {
             method: 'POST',
-            body: JSON.stringify({ username, password, }),
+            body: JSON.stringify({ users_name: users_name, email: email, password: password, }),
             headers: { 'Content-Type': 'application/json' },
         });
 
@@ -28,7 +33,7 @@ const signupNewUser = async (e) => {
         }
     }
     else {
-        alert('Please enter a valid username and password (password must be at least 8 characters)');
+        alert('Please enter a valid username and password ');
     }
 };
 
@@ -36,13 +41,13 @@ const signupNewUser = async (e) => {
 const logUserIn = async (e) => {
     e.preventDefault();
 
-    const username = document.querySelector('#username').value.trim();
-    const password = document.querySelector('#password').value.trim();
+    const email = $('#login-email').text.trim();
+    const password = $('#login-password').text.trim();
 
-    if (username && password) {
+    if (email && password) {
         const response = await fetch('/api/users/login', {
             method: 'POST',
-            body: JSON.stringify({ username, password }),
+            body: JSON.stringify({ email, password }),
             headers: { 'Content-Type': 'application/json' },
         });
 
@@ -55,7 +60,7 @@ const logUserIn = async (e) => {
 };
 
 
-const loggoutUser = async (e) => {
+const logoutUser = async (e) => {
     e.preventDefault();
 
     const response = await fetch('/api/users/logout', {
@@ -68,13 +73,7 @@ const loggoutUser = async (e) => {
 }
 
 
-
-
-loggOutBtn.on('click', loggoutUser)
 // event listeners to trigger each function
-if (submitSignupBtn) {
-    submitSignupBtn.addEventListener('click', signupNewUser);
-}
-if (submitLoginBtn) {
-    submitLoginBtn.addEventListener('click', logUserIn);
-}
+submitSignupBtn.on('click', signupNewUser);
+submitLoginBtn.on('click', logUserIn);
+logOutBtn.on('click', logoutUser)

@@ -12,10 +12,18 @@ User.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        username: {
+        users_name: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true
+            unique: false
+        },
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true,
+            validate: {
+                isEmail: true,
+            },
         },
         intolerances: {
             type: DataTypes.STRING,
