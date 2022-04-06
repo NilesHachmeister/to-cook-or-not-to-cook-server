@@ -31,8 +31,11 @@ const sess = {
         db: sequelize
     })
 };
-app.use(session(sess));
-
+app.use(session({
+    secret: 'secretidhere', 
+    resave: false, 
+    saveUninitialized: false
+  }))
 // using handlebars
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
