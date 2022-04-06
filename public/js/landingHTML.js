@@ -9,19 +9,23 @@ let recipeID = 0;
 
 const saveRecipeToDbBtn = $('.save-recipe-to-db')
 
+function init() {
+
+    getStoredIntolerants()
+}
+
+
 // this function allows the user to search for places 
 const searchGoogleMaps = async () => {
-
 
     // this defines the search term
     let userSearchTerm = $("#google-search-bar").val()
 
+    document.location.replace(`/search-item/${userSearchTerm}#map-holder`);
 
-    const findASearch = await fetch(`/search-google-maps`, {
-        method: 'POST',
-        body: JSON.stringify({ userSearchTerm }),
-        headers: { 'Content-Type': 'application/json' },
-    });
+    window.scrollTo($('#map-holder'))
+
+
 }
 
 const searchForRecipe = async () => {
@@ -29,11 +33,7 @@ const searchForRecipe = async () => {
     //  this adds the searched value to the search term variable. 
     const searchItem = $("#search").val();
 
-    const findASearch = await fetch(`/searched-recipe`, {
-        method: 'POST',
-        body: JSON.stringify({ searchItem }),
-        headers: { 'Content-Type': 'application/json' },
-    });
+    document.location.replace(`/search-item/${searchItem}`);
 }
 
 
@@ -81,9 +81,6 @@ function saveInts() {
     if ($('#intolerance12').is(':checked')) {
         intolerantArray.push("wheat");
     }
-
-
-
 }
 
 
@@ -151,8 +148,6 @@ const getStoredIntolerants = async () => {
 // this function takes the stored intolerances and compiles them into a variable that is the paramater for the api call. It then calls the api
 const compileIntolerances = async () => {
 
-
-
     let intolerantParams = "";
     saveInts()
 
@@ -175,24 +170,12 @@ const compileIntolerances = async () => {
     }
 
 
-
     const response = await fetch(`/api/users/intolerances`, {
         method: 'PUT',
         body: JSON.stringify({ intolerantParams }),
         headers: { 'Content-Type': 'application/json' },
     });
-
-
 }
-
-
-
-
-function init() {
-
-    getStoredIntolerants()
-}
-
 
 
 
@@ -200,7 +183,6 @@ function init() {
 // builds an object based on the ingredients in the chosen recipe
 const saveRecipeToDb = async (e) => {
 
- 
     const id = e.attr("data-id")
 
     const response = await fetch(`/api/recipe/spoon/${id}`, {
@@ -218,7 +200,6 @@ const saveRecipeToDb = async (e) => {
 }
 
 const sendRecipeToDb = async (data2) => {
-
 
     let savedRecipeObj = {
         name: "",
@@ -274,7 +255,9 @@ saveRecipeToDbBtn.on('click', function () {
 
 //event listeners 
 $("#save-btn").on("click", saveInts)
-$("#see-recipe-btn").on("click", saveInts)
+$("#see-recipe-btn").on("click", function () {
+    document.location.reload();
+})
 
 
 
@@ -304,59 +287,3 @@ $("#search-btn").on("click", function (e) {
     e.preventDefault()
     searchForRecipe()
 })
-
-
-// this listes for the save button to be clicked. If they are clicked it then calls the api, and disables the buttons
-$("#recipe-save-1").on("click", function () {
-    recipeID = recipeIDArray[0]
-    callAPIByID(recipeID)
-    disableBtn1();
-});
-$("#recipe-save-2").on("click", function () {
-    recipeID = recipeIDArray[1]
-    callAPIByID(recipeID)
-    disableBtn2();
-});
-$("#recipe-save-3").on("click", function () {
-    recipeID = recipeIDArray[2]
-    callAPIByID(recipeID)
-    disableBtn3();
-});
-$("#recipe-save-4").on("click", function () {
-    recipeID = recipeIDArray[3]
-    callAPIByID(recipeID)
-    disableBtn4();
-});
-$("#recipe-save-5").on("click", function () {
-    recipeID = recipeIDArray[4]
-    callAPIByID(recipeID)
-    disableBtn5();
-});
-$("#recipe-save-6").on("click", function () {
-    recipeID = recipeIDArray[5]
-    callAPIByID(recipeID)
-    disableBtn6();
-});
-
-
-// this changes the save recipe buttons to disabled
-function disableBtn1() {
-    document.getElementById("recipe-save-1").disabled = true;
-}
-function disableBtn2() {
-    document.getElementById("recipe-save-2").disabled = true;
-}
-function disableBtn3() {
-    document.getElementById("recipe-save-3").disabled = true;
-}
-function disableBtn4() {
-    document.getElementById("recipe-save-4").disabled = true;
-}
-function disableBtn5() {
-    document.getElementById("recipe-save-5").disabled = true;
-}
-function disableBtn6() {
-    document.getElementById("recipe-save-6").disabled = true;
-}
-
-

@@ -15,18 +15,21 @@ router.get('/', async (req, res) => {
             const findUserData = await User.findByPk(req.session.user_id);
             const user = findUserData.get({ plain: true });
             intolerantParams = user.intolerances
+            console.log("---------------");
         }
 
+        console.log(intolerantParams);
 
-
-        let googleLink = `https://www.google.com/maps/embed/v1/search?key=${process.env.GOOGLE_API_KEY}&q=restaurantst&zoom=14`
+        let googleLink = `https://www.google.com/maps/embed/v1/search?key=${process.env.GOOGLE_API_KEY}&q=restaurants&zoom=14`
 
         const spoonURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.SPOONACULAR_API_KEY}`;
 
         let googleMap = {
             link: googleLink
         }
-        console.log(googleLink);
+        if (intolerantParams == null) {
+            intolerantParams = ""
+        }
 
         // this fetches the api url with the intolerance and search term included
         const spoonData = await fetch(spoonURL + intolerantParams)
@@ -37,6 +40,8 @@ router.get('/', async (req, res) => {
             })
             .then(function (data) {
                 const recipes = data.results
+
+                console.log(recipes);
                 res.render('homepage', {
                     recipes, loggedIn: req.
                         session.loggedIn, googleMap
@@ -79,6 +84,9 @@ router.get('/recipe/sorted-by-favorite', logginCheck, async (req, res) => {
                 order: [
                     ['favorite', 'DESC'],
                 ],
+                where: {
+                    user_id: req.session.user_id,
+                },
             }
         )
         const recipes = dbRecipeData.map((recipe) =>
@@ -102,6 +110,9 @@ router.get('/recipe/sorted-by-created', logginCheck, async (req, res) => {
                 order: [
                     ['created', 'DESC'],
                 ],
+                where: {
+                    user_id: req.session.user_id,
+                },
             }
         )
         const recipes = dbRecipeData.map((recipe) =>
@@ -117,13 +128,18 @@ router.get('/recipe/sorted-by-created', logginCheck, async (req, res) => {
     }
 })
 
-router.post('/searched-recipe', async (req, res) => {
+router.get('/search-item/:id', async (req, res) => {
 
     try {
         const spoonURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.SPOONACULAR_API_KEY}`;
         const intolerantParams = "";
-        const searchItem = req.body.searchItem.split(" ").join("");
+        const searchItem = req.params.id
         const searchTerm = "&query=" + searchItem
+
+        let googleLink = `https://www.google.com/maps/embed/v1/search?key=${process.env.GOOGLE_API_KEY}&q=${searchItem}&zoom=14`
+        let googleMap = {
+            link: googleLink
+        }
 
 
         // this fetches the api url with the intolerance and search term included
@@ -135,8 +151,7 @@ router.post('/searched-recipe', async (req, res) => {
             })
             .then(function (data) {
                 const recipes = data.results
-                console.log(recipes);
-                res.render('homepage', { recipes, loggedIn: req.session.loggedIn });
+                res.render('homepage', { recipes, loggedIn: req.session.loggedIn, googleMap });
             })
 
     } catch (err) {
@@ -144,51 +159,6 @@ router.post('/searched-recipe', async (req, res) => {
         res.status(500).json(err);
     }
 });
-
-router.post(`/search-google-maps`, async (req, res) => {
-    try {
-
-        let intolerantParams = "";
-
-        if (req.session.loggedIn) {
-            const findUserData = await User.findByPk(req.session.user_id);
-            const user = findUserData.get({ plain: true });
-            intolerantParams = user.intolerances
-        }
-
-        const userSearchTerm = req.body.userSearchTerm
-        console.log(userSearchTerm);
-        console.log("-------------------------- ");
-        let googleLink = `https://www.google.com/maps/embed/v1/search?key=${process.env.GOOGLE_API_KEY}&q=${userSearchTerm}t&zoom=14`
-
-
-        const spoonURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.SPOONACULAR_API_KEY}`;
-
-        let googleMap = {
-            link: googleLink
-        }
-        console.log(userSearchTerm);
-        console.log(googleMap);
-        // this fetches the api url with the intolerance and search term included
-        const spoonData = await fetch(spoonURL + intolerantParams)
-            .then(function (response) {
-
-                // this takes the response and turns it into json format
-                return response.json();
-            })
-            .then(function (data) {
-                const recipes = data.results
-                res.render('homepage', {
-                    recipes, loggedIn: req.
-                        session.loggedIn, googleMap
-                });
-            })
-
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
-    }
-})
 
 
 // this renders the login page for the user

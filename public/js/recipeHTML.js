@@ -13,7 +13,7 @@ $(document).ready(function () {
 
     const createEmptyRecipe = async () => {
 
-        const response = await fetch(`/api/recipe/new`, {
+        const response = await fetch(`/api/recipe/blank`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
         });

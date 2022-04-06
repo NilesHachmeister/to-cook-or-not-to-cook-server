@@ -54,6 +54,28 @@ router.post('/new', logginCheck, async (req, res) => {
 
     try {
         const recipeData = await Recipe.create({
+            name: req.body.name,
+            ingredients: req.body.ingredients,
+            instructions: req.body.instructions,
+            favorite: req.body.favorite,
+            created: req.body.created,
+            human: req.body.human,
+            user_id: req.session.user_id
+        });
+
+        res.status(200).json(recipeData);
+        // catches any errors
+    } catch (err) {
+        console.log(err);
+        res.status(400).json(err);
+    }
+
+});
+
+router.post('/blank', logginCheck, async (req, res) => {
+
+    try {
+        const recipeData = await Recipe.create({
             name: "Recipe Name",
             ingredients: "Recipe Ingredients",
             instructions: "Recipe Instructions",
@@ -165,8 +187,6 @@ router.get('/spoon/:id', async (req, res) => {
             const recipes = data
             res.json(recipes);
         })
-
-
 });
 
 
