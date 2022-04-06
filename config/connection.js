@@ -15,5 +15,10 @@ if (process.env.JAWSDB_URL) {
         { host: 'localhost', dialect: 'mysql', port: 3306 }
     );
 }
+app.use(session({
+    secret: 'secretidhere', 
+    resave: false, 
+    saveUninitialized: false
+  }))
 
 module.exports = sequelize;
