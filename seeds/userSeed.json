@@ -1,11 +1,13 @@
 [
     {
-        "username": "user1",
+        "users_name": "user1",
+        "email": "example@email.com",
         "intolerances": "",
         "password": "123456789"
     },
     {
-        "username": "user2",
+        "users_name": "user2",
+        "email": "example@emai3l.com",
         "intolerances": "",
         "password": "123456789"
     }
