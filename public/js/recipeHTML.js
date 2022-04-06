@@ -13,11 +13,10 @@ $(document).ready(function () {
 
     const createEmptyRecipe = async () => {
 
-        const response = await fetch(`/api/recipe`, {
+        const response = await fetch(`/api/recipe/blank`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
         });
-
         location.reload()
     }
 
@@ -28,16 +27,33 @@ $(document).ready(function () {
         let savedRecipeObj = {
             name: "",
             ingredients: "",
-            instrcuctions: "",
-            created: true,
-            human: true
+            instructions: "",
         }
 
 
+        // this finds the data id of the clicked card
+        let thisElement = e.parent(".btn-container").parent(".content").parent(".card-content").parent(".card").children(".card-header").children(".card-header-title")
+        let thisDataId = thisElement.attr("data-id")
+
+
+        const currentStatus = await fetch(`/api/recipe/${thisDataId}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        let dataBack;
+        await currentStatus.json().then(data => { dataBack = data });
+
+        console.log(dataBack.favorite);
+
+        savedRecipeObj = {
+            favorite: dataBack.favorite,
+            created: dataBack.created,
+            human: dataBack.human
+        }
+
 
         let newRecipeNameBox = e.parent(".btn-container").parent(".content").parent(".card-content").parent(".card").children(".card-header").children(".card-header-title");
-
-        console.log(newRecipeNameBox);
         savedRecipeObj.name = newRecipeNameBox.text()
 
         // this gets the new recipes ingredients
@@ -47,10 +63,10 @@ $(document).ready(function () {
 
         // this gets the new recipes direction
         let newRecipeDirectionsBox = e.parent(".btn-container").parent(".content").children(".directions").children(".text-input-for-recipe")
-        savedRecipeObj.instrcuctions = newRecipeDirectionsBox.html()
+        savedRecipeObj.instructions = newRecipeDirectionsBox.html()
 
-        // this grabs the data id attribute of the selected  recipe
-        let thisDataId = newRecipeNameBox.attr("data-id")
+        console.log(savedRecipeObj);
+
 
         const response = await fetch(`/api/recipe/${thisDataId}`, {
             method: 'PUT',
@@ -70,13 +86,27 @@ $(document).ready(function () {
         let thisElement = e.parent(".btn-container").parent(".content").parent(".card-content").parent(".card").children(".card-header").children(".card-header-title")
         let thisDataId = thisElement.attr("data-id")
 
-        let savedRecipeObj = {
-            favorite: true,
+        const currentStatus = await fetch(`/api/recipe/${thisDataId}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        let dataBack;
+        await currentStatus.json().then(data => { dataBack = data });
+
+        let savedRecipeObj = {}
+
+        console.log(dataBack.favorite);
+        if (dataBack.favorite == true) {
+            savedRecipeObj = {
+
+                favorite: false,
+            }
+        } else {
+            savedRecipeObj = {
+                favorite: true,
+            }
         }
-
-        console.log("here");
-
-        console.log(savedRecipeObj);
 
         const response = await fetch(`/api/recipe/${thisDataId}`, {
             method: 'PUT',
@@ -86,20 +116,12 @@ $(document).ready(function () {
         if (response.ok) {
             document.location.replace('/recipe');
         }
-
-
     }
 
 
-    // this sorts the recipes depending on if they are marked as a favorite or not
-
     const sortByFavorite = async () => {
 
-
-        console.log("here");
-
-
-        const response = await fetch('/api/recipe/sortByFavorite');
+        document.location.replace('/recipe/sorted-by-favorite');
 
     }
 
@@ -107,36 +129,8 @@ $(document).ready(function () {
     // this function sorts by checking if the recipe was created or not
     function sortByCreated() {
 
+        document.location.replace('/recipe/sorted-by-created');
 
-
-
-        // // this declares variables
-        // let countLength = savedRecipe.length
-        // let createdArray = []
-        // let notCreatedArray = []
-
-        // // this runns through each recipe and checks if they are marked as created or not. If they are a created recipe they are moved into the created array, else they are moved into the notCreatedArray
-        // for (let index = 0; index < countLength; index++) {
-        //     const element = savedRecipe[0].created;
-        //     if (element) {
-        //         let removed = (savedRecipe.splice(0, 1))
-        //         $.merge(createdArray, removed)
-        //     } else {
-        //         let removed = (savedRecipe.splice(0, 1))
-        //         console.log(removed);
-        //         $.merge(notCreatedArray, removed)
-        //     }
-
-        // }
-
-        // // this merges the created and notCreated arrays and saves them as savedRecipes
-        // savedRecipe = $.merge(createdArray, notCreatedArray)
-
-        // // this puts the saved recipes into local storage
-        // localStorage.setItem("savedRecipe", JSON.stringify(savedRecipe));
-
-        // // this reloads the page so that the recipes are displayed in the new order
-        // location.reload()
     }
 
 
@@ -158,9 +152,7 @@ $(document).ready(function () {
 
     // this takes the user to the index page
     $("#go-back-button").on("click", function () {
-        console.log("here");
-
-        document.location.replace('./index.html');
+        document.location.replace('/');
     })
 
     // $("#sort-by-favorite-btn").on("click", sortByFavorite)
@@ -172,12 +164,8 @@ $(document).ready(function () {
 
     createNewRecipeBtn.on('click', createEmptyRecipe)
 
-    sortByCreatedBtn.on('click', function () {
-        sortByCreated
-    })
-    sortByFavoriteBtn.on('click', function () {
-        sortByFavorite
-    })
+    sortByCreatedBtn.on('click', sortByCreated)
+    sortByFavoriteBtn.on('click', sortByFavorite)
 
     favoriteBtn.on('click', function () {
         addFavoriteToObject($(this))

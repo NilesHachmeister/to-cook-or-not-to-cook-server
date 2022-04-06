@@ -1,5 +1,6 @@
 const submitSignupBtn = document.querySelector('#submit-sign-up-btn');
 const submitLoginBtn = document.querySelector('#submit-login-btn');
+const loggOutBtn = $('#loggout-btn');
 
 // this function allows a new user to sign up
 const signupNewUser = async (e) => {
@@ -16,12 +17,12 @@ const signupNewUser = async (e) => {
     if (username && password) {
         const response = await fetch('/api/users', {
             method: 'POST',
-            body: JSON.stringify({ username, password }),
+            body: JSON.stringify({ username, password, }),
             headers: { 'Content-Type': 'application/json' },
         });
 
         if (response.ok) {
-            document.location.replace('/recipe');
+            document.location.replace('/');
         } else {
             alert('Failed to sign up, please try again');
         }
@@ -53,6 +54,23 @@ const logUserIn = async (e) => {
     }
 };
 
+
+const loggoutUser = async (e) => {
+    e.preventDefault();
+
+    const response = await fetch('/api/users/logout', {
+        method: 'POST',
+        body: JSON.stringify(),
+        headers: { 'Content-Type': 'application/json' },
+    });
+    document.location.replace('/');
+
+}
+
+
+
+
+loggOutBtn.on('click', loggoutUser)
 // event listeners to trigger each function
 if (submitSignupBtn) {
     submitSignupBtn.addEventListener('click', signupNewUser);

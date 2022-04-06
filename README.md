@@ -1,4 +1,4 @@
-## To cook, or not too cook?
+ ## To cook, or not too cook?
 # User story:
 * As a user deciding what to eat, they pull up our webpage.
 * When a user is presented with the page, it is populated with suggested recipes and local restaurants through API requests.
