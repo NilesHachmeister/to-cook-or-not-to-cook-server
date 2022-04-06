@@ -19,7 +19,7 @@ const sess = {
     secret: process.env.SESSIONS_SECRET,
     cookie: {
 
-        maxAge: 6000000,
+        maxAge: 600000,
         httpOnly: true,
         secure: false,
         sameSite: 'strict',
@@ -31,11 +31,8 @@ const sess = {
         db: sequelize
     })
 };
-app.use(session({
-    secret: 'secretidhere', 
-    resave: false, 
-    saveUninitialized: false
-  }))
+app.use(session(sess));
+
 // using handlebars
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
