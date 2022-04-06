@@ -34,7 +34,7 @@ span {
     font-style:normal;
 }
 
-
+/* 
 #main-title {
     font-weight:200;
     font-style: normal;
@@ -43,7 +43,39 @@ span {
     font-size:60px;
     display:center;
 
+} */
+
+#main-title {
+    margin-top: 3%;
+    font-weight:200;
+    font-style: normal;
+    font-family: "Pacifico", sans-serif;
+    font-size:60px;
+    display: inline-block;
 }
+
+#header-pic {
+    background-image: url("https://cdn.pixabay.com/photo/2021/01/01/21/56/cooking-5880136_960_720.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    justify-content: center;
+    align-items: stretch;
+    height: 200px;
+    width: 100%;
+    transform: translate(10px);
+}
+
+.button {
+    border-radius: 3;
+    border: none;
+}
+
+.member-card {
+   background-color: #f9f6f6;
+    border: none;
+    height: 400px; 
+    padding: 10px;
+} 
 
 .hero-body{
     display: flex;

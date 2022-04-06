@@ -23,7 +23,29 @@
     <link rel="stylesheet" href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css" />
 
 
-    <nav class="navbar navbar-expand-lg">
+
+
+
+     <nav class="navbar" role="navigation" aria-label="dropdown navigation">
+        <div class="navbar-item has-dropdown is-hoverable">
+            <div class="" id="navbarNav"></div>
+            <a class="navbar-link">Nav </a>
+            <div class="navbar-dropdown">
+                {{!-- {{#if req.session.loggedIn}} --}}
+            
+                    <a class="navbar-item" href="/Login">Login/Sign-Up</a>
+            
+                    <a class="navbar-item" href="/logout">Logout</a>
+                
+                    <a class="navbar-item" href="/Home">Home </a>
+            
+                {{!-- {{else}} --}}
+               
+            </div>
+        </div>
+      </nav>
+
+    {{!-- <nav class="navbar navbar-expand-lg">
         <div class="" id="navbarNav">
             {{#if req.session.loggedIn}}
             <li class="nav-item p-1 mx-4">
@@ -37,7 +59,7 @@
 
             </ul>
         </div>
-    </nav>
+    </nav> --}}
 
 
 
