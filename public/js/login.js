@@ -22,7 +22,7 @@ const signupNewUser = async (e) => {
         });
 
         if (response.ok) {
-            document.location.replace('/recipe');
+            document.location.replace('/');
         } else {
             alert('Failed to sign up, please try again');
         }

@@ -40,8 +40,7 @@
                                     id="google-search-bar"></a>
                         </p>
                         <p class="control">
-                            <a href="#map-holder">
-
+                            <a>
                                 <button class="button is-link  input is-success" id="search-google-btn">
                                     Search
                                 </button>
@@ -75,6 +74,7 @@
             <p class="level-item" id="go-to-recipes-button"><a href="/recipe">Your Recipes</a></p>
             <p class="level-item"><a href="#map-holder">Restaurants Near You</a></p>
             <!-- <p class="level-item"><a class="button is-success">New</a></p> -->
+            {{#if loggedIn}}
             <div class="dropdown">
                 <div class="dropdown-trigger">
                     <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
@@ -84,6 +84,9 @@
                         </span>
                     </button>
                 </div>
+
+
+
                 <div class="dropdown-menu" id="dropdown-menu" role="menu">
                     <div class="dropdown-content">
                         <div class="dropdown-item">
@@ -139,10 +142,10 @@
                         <a href="#" class="dropdown-item">
                             <button class=" button is-success" id="see-recipe-btn">See Recipes</button>
                         </a>
-
                     </div>
                 </div>
             </div>
+            {{/if}}
         </div>
     </div>
     </div>
@@ -150,15 +153,20 @@
     <!-- Recipie cards -->
     <container>
 
+        {{#if recipes}}
         {{#each recipes}}
         {{> home-card}}
         {{/each}}
+        {{else}}
+        <h2>No Recipes Found</h2>
+        {{/if}}
+
+
     </container>
 
 
     <footer class="section" id="map-holder">
-        <figure class="image"><iframe width="100%" height="250" frameborder="0" style="border:0"
-                src="{{googleMap.link}}" allowfullscreen></iframe></figure>
+        {{> google-map}}
         <div class="container">
             <div class="content has-text-centered">
                 <article class="notification media has-background-white">
