@@ -1,66 +1,74 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="../images/fav_icon.png" type="image/x-icon">
-    <title>To Cook or Not To Cook</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel='stylesheet'
-        href='https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.9.1/css/OverlayScrollbars.min.css'>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+   <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="shortcut icon" href="../images/fav_icon.png" type="image/x-icon">
+            <title>To Cook or Not To Cook</title>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel='stylesheet'
+                href='https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.9.1/css/OverlayScrollbars.min.css'>
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
-    <!-- practice -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <!-- practice -->
-    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+            <!-- practice -->
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css" rel="stylesheet" />
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+                integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+            <!-- practice -->
+            <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+            <link rel="stylesheet" href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css" />
+            <link rel="stylesheet" href="/css/style.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
 
 
-    <link rel="stylesheet" href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css" />
-
-
-    <nav class="navbar navbar-expand-lg">
-        <div class="" id="navbarNav">
-            {{#if req.session.loggedIn}}
-            <li class="nav-item p-1 mx-4">
-                <a class="nav-link" href="/logout">Logout</a>
-            </li>
-            {{else}}
-            <li class="nav-item p-1 mx-4">
-                <a class="nav-link" href="/login">Login</a>
-            </li>
-            {{/if}}
-
-            </ul>
+          <nav class="navbar" role="navigation" aria-label="dropdown navigation">
+        <div class="navbar-item has-dropdown is-hoverable">
+            <div class="" id="navbarNav"></div>
+            <a class="navbar-link">Nav </a>
+            <div class="navbar-dropdown">
+                {{#if req.session.loggedIn}}
+                <li class="nav-item">
+                    <a class="navbar-item" href="/logout">Logout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-item" href="/Home">Home </a>
+                </li>
+                {{else}}
+                <li class="nav-item">
+                    <a class="navbar-item" href="/Login">Login/Sign-Up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-item" href="/Home">Home </a>
+                </li>
+            </div>
         </div>
-    </nav>
+      </nav>
+ </head>
 
 
 
+    <body>
 
-    {{{body}}}
-
-
-    <script>
-
-        document.addEventListener("DOMContentLoaded", function () {
-            //The first argument are the elements to which the plugin shall be initialized
-            //The second argument has to be at least a empty object or a object with your desired options
-            OverlayScrollbars(document.querySelectorAll("body"), {});
-        });
-    </script>
-
-    <script src="https://unpkg.com/bulma-modal-fx/dist/js/modal-fx.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.9.1/js/OverlayScrollbars.min.js'></script>
-    <script src="/js/recipeHTML.js"></script>
-    <script src="/js/login.js"></script>
+        {{{body}}}
 
 
+            <script>
+
+                document.addEventListener("DOMContentLoaded", function () {
+                    //The first argument are the elements to which the plugin shall be initialized
+                    //The second argument has to be at least a empty object or a object with your desired options
+                    OverlayScrollbars(document.querySelectorAll("body"), {});
+                });
+            </script>
+
+            <script src="https://unpkg.com/bulma-modal-fx/dist/js/modal-fx.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+            <script src='https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.9.1/js/OverlayScrollbars.min.js'></script>
+            <script src="/js/recipeHTML.js"></script>
+            <script src="/js/login.js"></script>
+   
     </body>
 
 </html>
