@@ -4,24 +4,20 @@ const { User } = require('../../models');
 
 // route is /api/users/
 
-
 // this creates a new user into the database based on the input 
 router.post('/', async (req, res) => {
 
 
-    console.log(req.body);
-
-    // this creates the user
-    // this creates the user
     try {
-
         const newUser = req.body;
+
         // this bcrypts the password so that it can be stored safely
         newUser.password = await bcrypt.hash(req.body.password, 10);
 
+        // this creates the user
         const dbUserData = await User.create(newUser);
 
-        // this saves the user as logged in
+        // this saves the user as logged in and assigns the session the user id
         req.session.save(() => {
             req.session.loggedIn = true;
             req.session.user_id = dbUserData.id;
@@ -84,9 +80,10 @@ router.post('/login', async (req, res) => {
     }
 });
 
-
+// this logs out a user
 router.post('/logout', async (req, res) => {
 
+    // if the user is logged in the session is destroyed and the user is taken back to the homepage.
     if (req.session.loggedIn) {
 
         req.session.destroy(() => {
@@ -98,12 +95,10 @@ router.post('/logout', async (req, res) => {
     }
 });
 
+// this updates a users intolerances
 router.put('/intolerances', async (req, res) => {
 
-    console.log(req.body);
-
-    console.log(req.body.intolerantParams);
-
+    // this updates the intolerances based on what is sent in where the user id matches the logged in user.
     try {
         const userData = await User.update(
             {
@@ -114,11 +109,7 @@ router.put('/intolerances', async (req, res) => {
                     id: req.session.user_id,
                 },
             });
-
-        console.log(userData);
         res.status(200).json(userData)
-
-
 
         // catches any errors
     } catch (err) {
@@ -127,12 +118,12 @@ router.put('/intolerances', async (req, res) => {
     }
 });
 
+// this gets all stored intolerances from the currently logged in user
 router.get('/get-stored-ints', async (req, res) => {
-
-
 
     let intolerantParams = "";
 
+    // if the user is logged in then we find the users information based on the session user id and get the intolerances from that object.
     try {
         if (req.session.loggedIn) {
             const findUserData = await User.findByPk(req.session.user_id);
@@ -140,6 +131,7 @@ router.get('/get-stored-ints', async (req, res) => {
             intolerantParams = user.intolerances
         }
 
+        // returns the saved intolerances to the front end
         res.json(intolerantParams);
 
         // catches any errors
@@ -147,9 +139,7 @@ router.get('/get-stored-ints', async (req, res) => {
         console.log(err);
         res.status(500).json(err);
     }
-
 });
-
 
 
 module.exports = router;
