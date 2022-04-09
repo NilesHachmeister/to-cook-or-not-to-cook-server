@@ -1,6 +1,28 @@
 {{!--
 <link rel="stylesheet" href="/css/style3.css"> --}}
+{{!-- <link rel="stylesheet" href="/css/stylesheet-page2.css"> --}}
+
+<link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="/css/stylesheet-page2.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
+{{!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" rel="stylesheet" /> --}}
+
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+
+<html>
+  <head>
+    <section class="hero is-$grey-light is-small">
+        <div class="hero-body" id="header-pic">
+            <div class="container has-text-centered">
+                <p class="title" id="main-title" style="color:black" style="background-color: white;">
+                    <span><i>To Cook Or Not To Cook  </i></span>
+                </p>
+            </div>
+        </div>
+    </section>
+  </head>
+
 
 </head>
 
@@ -16,7 +38,7 @@
     <div class="columns">
 
       <div class="column is-9" id="recipe-container">
-        <section class="hero is-info welcome is-small">
+        <section class="hero is-grey-lighter welcome is-small">
           <div class="hero-body">
             <div class="container">
               <h1 class="title">
@@ -39,26 +61,28 @@
         </section>
 
       </div>
-      <div class="column is-3 sider">
-        <aside class="menu">
-          <ul class="menu-list">
-            <li><button id="sort-by-favorite-btn"><a>Your favorites</a></button></li>
-            <li><button id="sort-by-created-btn"><a>Your Recipes</a></button></li>
-            <li><button class="create-new-recipe-btn"><a>Create New Recipe</a></button></li>
-            <br></br>
-            <br></br>
 
-            <li><button id="go-back-button"><a>Go back</a></button></li>
-          </ul>
-        </aside>
+       <div class="column is-3 sider">
+       <div class ="field">
+       <button class="button is-warning is-light is-fullwidth" id="sort-by-favorite-btn">Your Favorites</button>
+       <br>
+       <button class="button is-success is-light is-fullwidth"id="sort-by-created-btn">Your Recipes</button>
+       <br>
+       <button class="button is-link is-light is-fullwidth" id="create-new-recipe-btn">Create New Recipe</button>
+       <br><br>
+       <br><br>
+      
+       <button class="button is-grey is-light is-fullwidth" id="go-back-button">Go Back</button>
+      </div>
       </div>
     </div>
 
     <div class="footer">
-      <button class="fa fa-60x"><i class="fa fa-plus fa-6x create-new-recipe-btn"></i></button>
-    </div>
-
+      <button class="fas fa-60x"><i class="fas fa-file-upload fa-3x create-new-recipe-btn"></i></button>
   </div>
 
 
+  </div>
+
+<script src="https://your-site-or-cdn.com/fontawesome/v5.15.4/js/all.js" data-auto-a11y="true" ></script>
 </body>
