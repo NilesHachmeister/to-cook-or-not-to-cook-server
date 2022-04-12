@@ -1,9 +1,9 @@
-:root{
+:root {
     --background: #333366;
-    --light: #ccccff;    
+    --light: #ccccff;
 }
 
-#sidebar{
+#sidebar {
     background-color: var(--light);
 }
 
@@ -11,16 +11,14 @@
     font-weight: 600;
 }
 
-#search-results{
+#search-results {
     background-color: var(--background);
 }
 
-@media screen {
-    
-}
+@media screen {}
 
-.top-img{
- height: 200px;
+.top-img {
+    height: 200px;
 
 }
 
@@ -29,86 +27,23 @@ span {
     border: none;
 }
 
-.subtitle { 
-    font-weight:400;
-    font-style:normal;
+.subtitle {
+    font-weight: 400;
+    font-style: normal;
 }
 
-/* 
+
 #main-title {
-    font-weight:200;
+    font-weight: 200;
     font-style: normal;
     display: inline-flex;
     font-family: "Pacifico", sans-serif;
-    font-size:60px;
-    display:center;
-
-} */
-
-p {
-    font-size: large;
-}
-
-div.card-content {
-    margin: 10px;
-}
-
-.content {
-    margin:10px;
-}
-
-#main-title {
-    margin-top: 3%;
-    font-weight:200;
-    font-style: normal;
-    font-family: "Pacifico", sans-serif;
-    font-size:60px;
-    display: inline-block;
-}
-
-#header-pic {
-    background-image: url("https://cdn.pixabay.com/photo/2021/01/01/21/56/cooking-5880136_960_720.jpg");
-    background-repeat: no-repeat;
-    background-size:cover;
-    justify-content: center;
-    align-items: stretch;
-    height: 200px;
-    width: 100%;
-    transform: translate(10px);
-}
-
-.button {
-    border-radius: 20px;
+    font-size: 60px;
+    display: center;
 
 }
 
-#sort-by-favorite-btn {
-    margin-top: 0%;
-}
-
-#sort-by-created-btn {
-    margin-top:0%;
-}
-
-.create-new-recipe-btn {
-    margin-top:0%;
-}
-
-#go-back-button {
-    border-radius: 3;
-    border: none;
-}
-
-
-
-.member-card {
-   background-color: #f9f6f6;
-    border: none;
-    height: 400px; 
-    padding: 10px;
-} 
-
-.hero-body{
+.hero-body {
     display: flex;
     justify-content: center;
 }
@@ -118,11 +53,11 @@ div.card-content {
     opacity: 60%;
     border-radius: 10px;
     color: black;
-    font-weight:500;
+    font-weight: 500;
 }
 
-.has-text-centered{
-    position:absolute;
+.has-text-centered {
+    position: absolute;
     top: 30%;
     display: center;
     justify-content: center;
@@ -132,8 +67,9 @@ div.card-content {
 
 #header-pic {
     background-image: url("https://cdn.pixabay.com/photo/2021/01/01/21/56/cooking-5880136_960_720.jpg");
+    /* background-image: url("https://cdn.pixabay.com/photo/2017/06/06/22/46/mediterranean-cuisine-2378758_960_720.jpg"); */
     background-repeat: no-repeat;
-    background-size:cover;
+    background-size: cover;
     justify-content: center;
     align-items: stretch;
     height: 200px;
@@ -148,19 +84,19 @@ container {
     justify-content: center;
 }
 
-.card{
-    margin:10px;
+.card {
+    height: 300px;
     width: 200px;
+    margin: 20px;
     padding: 10px;
     width: 200px;
     justify-content: center;
     background-color: rgb(239, 239, 239);
     border-radius: 9px;
-    box-shadow: -4px -3px 45px 21px rgba(0,0,0,0.35);
+    box-shadow: -4px -3px 45px 21px rgba(0, 0, 0, 0.35);
 }
 
-    
-img{
+img {
     margin-bottom: 20px;
     position: absolute;
     bottom: 45px;
@@ -169,11 +105,11 @@ img{
     align-content: center;
     right: 20px;
 }
-    
-.buttoncard{
+
+.buttoncard {
     margin-left: 60px;
     background-color: rgb(247, 251, 255);
-    color:black;
+    color: black;
     width: 45%;
     font-size: 12px;
     border-radius: 5px;
@@ -182,8 +118,8 @@ img{
     display: block;
     position: absolute;
     bottom: 15px;
-    right:15px;
-    
+    right: 15px;
+
 }
 
 .hero.is-info {
@@ -195,8 +131,8 @@ img{
 footer {
     width: 100%;
 }
-    
-img{
+
+img {
     margin-bottom: 20px;
     position: absolute;
     bottom: 45px;
@@ -206,12 +142,13 @@ img{
 
 }
 
-/* .buttoncard.is-hovered, .buttoncard:hover{
+.buttoncard.is-hovered,
+.buttoncard:hover {
     border-color: #4a4a4a;
     border: 1px;
     color: red;
 
-} */
+}
 
 /* i.fa-heart:hover{
     color: red;
@@ -224,52 +161,137 @@ img{
     color: rgb(0, 0, 0);
 }
 
-.level-right{
+.level-right {
     margin-right: 15px;
     margin-bottom: 3px;
 }
 
-.active.post-img i{
+.active.post-img i {
     animation: heart 1s linear;
 }
 
 @keyframes heart {
-    0%{
+    0% {
         opacity: 0;
         transform: scale(0);
     }
-    50%{
+
+    50% {
         opacity: 1;
         transform: scale(6);
     }
 }
 
-.reactions{
+.reactions {
     margin-top: 1rem;
 }
 
-.reactions i{
+.reactions i {
     font-size: 1.5rem;
     cursor: pointer;
 }
 
-.react-links i{
+.react-links i {
     margin-right: 10px;
 }
 
-.caption{
+.caption {
     margin-top: 10px;
     display: flex;
 }
 
-.caption .profile-name{
+.caption .profile-name {
     font-size: 1rem;
     font-weight: 800;
     margin-right: 10px;
 }
 
-.level{
+.level {
     margin-top: 9px;
     margin-bottom: 4px;
     flex-wrap: wrap;
+}
+
+
+/* /////////////////////////////-------//////////////////////// */
+
+
+div.card-content2 {
+    margin: 10px;
+} 
+
+.content2 {
+    margin:10px;
+}
+
+div.card-content2
+card-content2 {
+    background-color: transparent;
+    padding: 1.5rem;
+    padding-top: 0px;
+
+}
+
+.hero-body2 {
+    background-color: rgb(214 217 220);
+}
+
+.sider {
+    background-color: rgb(214 217 220);
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+h2 {
+    color: black;
+    padding: 15px;
+    font-size: 30px;
+
+}
+
+h2.title {
+    padding-bottom: 15px;
+    padding-top: 15px;
+    text-align: center;
+}
+
+div.card2 {
+    justify-content: center;
+    border: 1px solid grey;
+    margin:3px;
+}
+
+.text-input-for-recipe2 {
+    background-color: rgb(230, 226, 226);
+    font-style: italic;
+}
+.text-input-for-recipe3 {
+    background-color: rgb(230, 226, 226);
+    font-style: italic;
+}
+
+header.card-header2 {
+justify-content: center;
+
+}
+.card-header {
+    background-color: transparent;
+    box-shadow:inset;
+    display: flex;
+    justify-content: center;
+    padding-top: 12px;
+
+}
+
+div.columns.recipe-container {
+    padding: 15px;
+}
+
+.card-header-title {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    border: 1px solid grey;
+    border-radius: 5px;
+    min-height: 50px;
 }
