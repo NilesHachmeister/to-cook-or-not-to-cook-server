@@ -34,6 +34,12 @@ const signupNewUser = async (e) => {
     const email = rawEmail.val().trim();
     const password = rawPassword.val().trim();
 
+    // this checks to make sure the email is valid
+    let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (!email.match(regexEmail)) {
+        alert("must be a valid email, please try again")
+    }
+
     // this checks if the password the user inputed is at least 8 characters long. If it is not the user is alerted
     if (password.split("").length < 8) {
         alert("password must be at least 8 characters long. Please try again");
@@ -52,7 +58,18 @@ const signupNewUser = async (e) => {
         if (response.ok) {
             document.location.replace('/');
         } else {
-            alert('Failed to sign up, please try again');
+
+            // gets the response back from the db and turns it into a usable form
+            let dataBackFromDb;
+            await response.json().then(data => { dataBackFromDb = data });
+
+            // this checks to make sure that there isnt already a user with the email address.
+            if (dataBackFromDb.parent.code === "ER_DUP_ENTRY") {
+                alert('There is already an account with that email address. Please try again')
+            } else {
+                alert('Failed to sign up, please try again');
+            }
+
         }
     }
     else {
