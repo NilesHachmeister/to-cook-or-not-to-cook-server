@@ -121,6 +121,10 @@ li button {
 
 }
 
+div.card-content {
+    margin:10px;
+}
+
 .btn-container {
     display: flex;
     justify-content:center;
