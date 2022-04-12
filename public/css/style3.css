@@ -43,12 +43,12 @@ img{
     
 }
 
-.buttoncard:hover{
+/* .buttoncard:hover{
     border-radius: 8px;
     background-color:green(160, 25, 25);
     color: red;
 
-}
+} */
 
 
 .is-info {
@@ -87,10 +87,10 @@ img{
 .react-links i{
     margin-right: 10px;
 }
-
+/* 
 i.fa-heart:hover{
     color: red;
-}
+} */
 
 .caption{
     margin-top: 10px;

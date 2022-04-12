@@ -4,18 +4,18 @@ body {
 
 }
 
-.top-bar {
+/* .top-bar {
     font-family: sans-serif;
-    background-image: url("https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/cute-kawaii-food-pattern-valentina-hramov.jpg");
+    background-image: url("https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/cute-kawaii-food-pattern-valentina-hramov.jpg"); */
     /* background-attachment: fixed; */
-    background-repeat: no-repeat;
+    /* background-repeat: no-repeat;
     background-size: cover;
     justify-content: center;
     height: 200px;
     margin-bottom: 20px;
     width: 100%;
 
-}
+} */
 
 h1 {
     color: white;
@@ -50,8 +50,16 @@ h1 {
 
 }
 
+
+p {
+    font-size: large;
+}
+
+.text-input {
+    padding:30px;;
+}
+
 .button {
-    margin-top: 1em;
     background-color: rgb(214 217 220);
     border-radius: 5px;
 }
@@ -69,14 +77,16 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 12px;
-
 }
 
 li button {
     width: 100%;
     border: 0;
     margin-bottom: 5px;
+}
 
+.sort-by-created-btn  {
+    margin-top: 1px;
 }
 
 [contentEditable=true]:empty:not(:focus):before {
@@ -113,8 +123,9 @@ li button {
 
 .btn-container {
     display: flex;
-    justify-content: space-between;
+    justify-content:center;
     flex-wrap: wrap;
+    padding: 5px;
 
 }
 
@@ -149,17 +160,18 @@ li button {
     margin-right: 12px;
 }
 
-.button.is-hovered,
+/* .button.is-hovered,
 .button:hover {
     border-color: #4a4a4a;
     color: red;
-}
+} */
 
 .fa-plus:before {
     content: "\f067";
     background-color: rgb(214 217 220);
     align-items: center;
 }
+
 
 
 .columns:not(:last-child) {
