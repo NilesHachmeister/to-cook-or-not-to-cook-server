@@ -84,7 +84,7 @@ const searchForRecipe = async () => {
     const searchItem = $("#search").val();
 
     // this replaces the location, calling the server so the page is repopulated with the found recipes
-    document.location.replace(`/search-item/${searchItem}`);
+    document.location.replace(`/search-item/${searchItem}#recipe-container`);
 }
 
 
