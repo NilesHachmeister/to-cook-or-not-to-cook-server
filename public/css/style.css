@@ -211,3 +211,87 @@ img {
     margin-bottom: 4px;
     flex-wrap: wrap;
 }
+
+
+/* /////////////////////////////-------//////////////////////// */
+
+
+div.card-content2 {
+    margin: 10px;
+} 
+
+.content2 {
+    margin:10px;
+}
+
+div.card-content2
+card-content2 {
+    background-color: transparent;
+    padding: 1.5rem;
+    padding-top: 0px;
+
+}
+
+.hero-body2 {
+    background-color: rgb(214 217 220);
+}
+
+.sider {
+    background-color: rgb(214 217 220);
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+h2 {
+    color: black;
+    padding: 15px;
+    font-size: 30px;
+
+}
+
+h2.title {
+    padding-bottom: 15px;
+    padding-top: 15px;
+    text-align: center;
+}
+
+div.card2 {
+    justify-content: center;
+    border: 1px solid grey;
+    margin:3px;
+}
+
+.text-input-for-recipe2 {
+    background-color: rgb(230, 226, 226);
+    font-style: italic;
+}
+.text-input-for-recipe3 {
+    background-color: rgb(230, 226, 226);
+    font-style: italic;
+}
+
+header.card-header2 {
+justify-content: center;
+
+}
+.card-header {
+    background-color: transparent;
+    box-shadow:inset;
+    display: flex;
+    justify-content: center;
+    padding-top: 12px;
+
+}
+
+div.columns.recipe-container {
+    padding: 15px;
+}
+
+.card-header-title {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    border: 1px solid grey;
+    border-radius: 5px;
+    min-height: 50px;
+}
