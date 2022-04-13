@@ -273,6 +273,7 @@ div.card2 {
 header.card-header2 {
 justify-content: center;
 
+
 }
 .card-header {
     background-color: transparent;
@@ -280,6 +281,7 @@ justify-content: center;
     display: flex;
     justify-content: center;
     padding-top: 12px;
+    
 
 }
 
@@ -288,10 +290,12 @@ div.columns.recipe-container {
 }
 
 .card-header-title {
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
     display: flex;
     justify-content: center;
     border: 1px solid grey;
     border-radius: 5px;
     min-height: 50px;
+    background-color: rgb(223, 230, 243);
+    font-style: italic;
 }
