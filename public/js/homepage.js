@@ -1,5 +1,5 @@
 // declaring global variable
-const intolerantArray = [];
+let intolerantArray = [];
 
 // this function runs on initialization and gets the intolerances to populate the checkboxes with what the user currently has
 function init() {
@@ -252,8 +252,7 @@ dropdown.on("click", function (e) {
     if (e.target.type === "checkbox" || $(this).is("label")) {
         dropdown.toggleClass('is-active');
     }
-    saveInts()
-
+    compileIntolerances()
 })
 
 // this saves the recipes
