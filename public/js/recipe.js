@@ -13,6 +13,9 @@ $(document).ready(function () {
     const createEmptyRecipe = async () => {
 
         // this sends a post to the server which creates a blank card, saves it to the user's recipes, and then reloads the page
+
+        console.log("here");
+
         const response = await fetch(`/api/recipe/blank`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -31,7 +34,7 @@ $(document).ready(function () {
         }
 
         // this finds the data id of the clicked card
-        const thisElement = e.parent(".btn-container").parent(".content").parent(".card-content").parent(".card").children(".card-header").children(".card-header-title")
+        const thisElement = e.parent(".btn-container").parent(".content2").parent(".card-content2").parent(".card2").children(".card-header2").children(".card-header-title")
         const thisDataId = thisElement.attr("data-id")
 
         // this gets the recipe already stored in the database to check if it is favorited, created, or made for humans.
@@ -51,15 +54,15 @@ $(document).ready(function () {
         }
 
         // this gets the recipes name stores it in the object to be saved in the database
-        const newRecipeNameBox = e.parent(".btn-container").parent(".content").parent(".card-content").parent(".card").children(".card-header").children(".card-header-title");
+        const newRecipeNameBox = e.parent(".btn-container").parent(".content2").parent(".card-content2").parent(".card2").children(".card-header2").children(".card-header-title");
         savedRecipeObj.name = newRecipeNameBox.text()
 
         // this gets the recipes ingredients stores it in the object to be saved in the database
-        const newRecipeIngredientsBox = e.parent(".btn-container").parent(".content").children(".ingredients").children(".text-input-for-recipe")
+        const newRecipeIngredientsBox = e.parent(".btn-container").parent(".content2").children(".ingredients").children(".text-input-for-recipe2")
         savedRecipeObj.ingredients = newRecipeIngredientsBox.html()
 
         // this gets the recipes direction and stores it in the object to be saved in the database
-        const newRecipeDirectionsBox = e.parent(".btn-container").parent(".content").children(".directions").children(".text-input-for-recipe")
+        const newRecipeDirectionsBox = e.parent(".btn-container").parent(".content2").children(".directions").children(".text-input-for-recipe3")
         savedRecipeObj.instructions = newRecipeDirectionsBox.html()
 
         // this sends the recipe to the database to be saved
@@ -77,7 +80,7 @@ $(document).ready(function () {
     const addFavoriteToObject = async (e) => {
 
         // this finds the data id of the clicked card
-        const thisElement = e.parent(".btn-container").parent(".content").parent(".card-content").parent(".card").children(".card-header").children(".card-header-title")
+        const thisElement = e.parent(".btn-container").parent(".content2").parent(".card-content2").parent(".card2").children(".card-header2").children(".card-header-title")
         const thisDataId = thisElement.attr("data-id")
 
         // this finds the recipe from the database to check if it is currently a favorite or not
@@ -120,9 +123,9 @@ $(document).ready(function () {
     // this function removes a recipe
     const removeRecipe = async (e) => {
 
-        // this finds the id of the recipe
-        const thisElement = e.parent(".btn-container").parent(".content").parent(".card-content").parent(".card").children(".card-header").children(".card-header-title");
-        const id = thisElement.attr("data-id");
+        // this finds the data id of the clicked card
+        const thisElement = e.parent(".btn-container").parent(".content2").parent(".card-content2").parent(".card2").children(".card-header2").children(".card-header-title")
+        const id = thisElement.attr("data-id")
 
         // this sends a delete request to the database to remove the specific recipe from the user's stored recipes
         const response = await fetch(`/api/recipe/${id}`, {
